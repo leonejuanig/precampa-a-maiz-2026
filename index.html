@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Precampaña Maíz 2025–2026 — Terra Salto</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
+
+:root {
+  --verde: #1e5c12;
+  --verde2: #2d7a1f;
+  --verde-claro: #4aaa2e;
+  --dorado: #c9960d;
+  --dorado-claro: #f0c040;
+  --crema: #faf6ec;
+  --tierra: #7a5230;
+  --gris: #3a3a3a;
+  --gris-claro: #e4dfd5;
+  --bg: #f2ede2;
+  --white: #ffffff;
+  --rojo: #b83030;
+  --naranja: #c96a10;
+  --azul: #1a56db;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--gris); min-height: 100vh; }
+
+/* ─── HEADER ─── */
+header {
+  background: var(--verde);
+  padding: 20px 32px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  border-bottom: 3px solid var(--dorado);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+}
+header h1 { font-family:'Syne',sans-serif; font-weight:800; font-size:1.45rem; color:#fff; letter-spacing:-0.02em; }
+header .sub { font-size:0.78rem; color:rgba(255,255,255,0.7); margin-top:2px; }
+.badge {
+  background: var(--dorado); color: var(--verde);
+  font-family:'Syne',sans-serif; font-weight:700; font-size:0.72rem;
+  padding:6px 14px; border-radius:20px; text-transform:uppercase; letter-spacing:0.06em;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+
+.wrap { max-width:1380px; margin:0 auto; padding:22px 18px; }
+
+/* ─── STATS ─── */
+.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
+.stat {
+  background:var(--white); border-radius:12px; padding:16px 18px;
+  border-left:4px solid var(--dorado);
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.stat .n { font-family:'Syne',sans-serif; font-size:2rem; font-weight:800; color:var(--verde); line-height:1; }
+.stat .l { font-size:0.72rem; color:#999; margin-top:4px; text-transform:uppercase; letter-spacing:.04em; }
+
+/* ─── FILTERS ─── */
+.filters {
+  background:var(--white); border-radius:12px; padding:14px 18px;
+  margin-bottom:18px; display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.filters label { font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; color:#777; white-space:nowrap; }
+.filters input[type=text] {
+  border:1.5px solid var(--gris-claro); border-radius:8px; padding:6px 11px;
+  font-family:'DM Sans',sans-serif; font-size:0.85rem; min-width:210px; outline:none;
+  transition:border-color .15s;
+}
+.filters input:focus { border-color:var(--verde-claro); }
+.filters select {
+  border:1.5px solid var(--gris-claro); border-radius:8px; padding:6px 11px;
+  font-family:'DM Sans',sans-serif; font-size:0.85rem; background:var(--white); cursor:pointer; outline:none;
+}
+.sep { width:1px; height:26px; background:var(--gris-claro); }
+.btn-p {
+  padding:6px 13px; border-radius:8px; border:1.5px solid; font-family:'DM Sans',sans-serif;
+  font-size:0.78rem; font-weight:500; cursor:pointer; transition:all .12s; white-space:nowrap;
+}
+.btn-p.on { background:var(--verde); color:#fff; border-color:var(--verde); }
+.btn-p:not(.on) { background:var(--white); color:#666; border-color:var(--gris-claro); }
+.btn-p:not(.on):hover { border-color:var(--verde); color:var(--verde); }
+
+/* ─── TABLE ─── */
+.tbl-wrap {
+  background:var(--white); border-radius:14px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.07); overflow:hidden; margin-bottom:20px;
+}
+.tbl-head {
+  padding:14px 18px 10px; display:flex; justify-content:space-between; align-items:center;
+  border-bottom:1px solid var(--gris-claro);
+}
+.tbl-head h2 { font-family:'Syne',sans-serif; font-size:0.95rem; font-weight:700; color:var(--verde); }
+.cnt { background:var(--crema); color:var(--tierra); font-size:0.72rem; font-weight:600; padding:3px 10px; border-radius:12px; }
+
+table { width:100%; border-collapse:collapse; font-size:0.82rem; }
+thead th {
+  background:#f6f2ea; padding:9px 13px; text-align:left;
+  font-family:'Syne',sans-serif; font-size:0.68rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:.05em; color:var(--tierra);
+  cursor:pointer; user-select:none; white-space:nowrap;
+}
+thead th:hover { color:var(--verde); }
+tbody tr { border-bottom:1px solid #eeebe3; cursor:pointer; transition:background .1s; }
+tbody tr:hover { background:#faf7f0; }
+tbody tr.exp { background:#f0f7ea; }
+tbody tr.exp:hover { background:#e8f2e0; }
+td { padding:9px 13px; vertical-align:middle; }
+.cname { font-weight:500; color:#1a1a1a; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+/* PRIORITY */
+.prio { display:inline-flex; align-items:center; gap:5px; font-size:0.74rem; font-weight:600; padding:3px 9px; border-radius:10px; white-space:nowrap; }
+.prio.alta { background:#fde8e8; color:var(--rojo); }
+.prio.media { background:#fff2e0; color:var(--naranja); }
+.prio.normal { background:#e8f4e6; color:var(--verde); }
+.dot { width:6px; height:6px; border-radius:50%; background:currentColor; flex-shrink:0; }
+
+/* CHIPS */
+.chips { display:flex; gap:3px; flex-wrap:wrap; }
+.chip { font-size:0.67rem; padding:2px 7px; border-radius:7px; font-weight:700; }
+.y23 { background:#e8f0fe; color:#1a56db; }
+.y24 { background:#f3e8ff; color:#7828c4; }
+.y25 { background:#fef3e2; color:#9a5a00; }
+
+/* MINI TIMELINE */
+.mtl { display:flex; align-items:center; gap:2px; position:relative; }
+.mtl-seg { height:16px; border-radius:2px; min-width:5px; cursor:help; position:relative; }
+.mtl-seg:hover::after {
+  content:attr(data-tip); position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
+  background:#222; color:#fff; font-size:0.65rem; padding:3px 7px; border-radius:5px;
+  white-space:nowrap; z-index:20; pointer-events:none;
+}
+.mtl-lbl { font-size:0.6rem; color:#ccc; padding:0 1px; user-select:none; }
+
+/* EXPAND */
+.exp-row td { padding:0; background:#eef6e6; }
+.exp-inner { padding:14px 18px 16px; border-top:2px dashed #b8dba0; animation:slideIn .18s ease; }
+@keyframes slideIn { from{opacity:0;transform:translateY(-5px)} to{opacity:1;transform:translateY(0)} }
+.exp-inner h4 { font-family:'Syne',sans-serif; font-size:0.75rem; color:var(--verde); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; }
+.txn-grp { margin-bottom:10px; }
+.txn-yr { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; padding-bottom:4px; border-bottom:1px solid #ddd; margin-bottom:4px; }
+.txn-tbl { width:100%; border-collapse:collapse; font-size:0.78rem; }
+.txn-tbl th { font-size:0.65rem; color:#aaa; text-transform:uppercase; font-weight:600; padding:3px 7px; text-align:left; }
+.txn-tbl td { padding:4px 7px; border-bottom:1px solid #e8e4dc; }
+.txn-tbl tr:last-child td { border-bottom:none; }
+.ebtn { background:none; border:none; color:#bbb; font-size:0.85rem; cursor:pointer; padding:2px 4px; }
+.ebtn:hover { color:var(--verde); }
+
+/* TIMELINE SECTION */
+.tl-section { background:var(--white); border-radius:14px; padding:20px; box-shadow:0 2px 10px rgba(0,0,0,0.07); margin-bottom:20px; }
+.tl-section h2 { font-family:'Syne',sans-serif; font-size:0.95rem; font-weight:700; color:var(--verde); margin-bottom:4px; }
+.tl-section .tl-sub { font-size:0.75rem; color:#aaa; margin-bottom:14px; }
+.tl-axis { display:grid; grid-template-columns:190px 1fr 55px; gap:10px; padding:0 0 8px; }
+.tl-axis-lbls { display:flex; justify-content:space-between; font-size:0.62rem; color:#bbb; }
+.tl-row { display:grid; grid-template-columns:190px 1fr 55px; gap:10px; align-items:center; padding:3px 0; border-bottom:1px solid #f0ede6; }
+.tl-row:last-child { border-bottom:none; }
+.tl-name { font-size:0.72rem; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#444; }
+.tl-bar-c { position:relative; height:10px; }
+.tl-marker { position:absolute; width:10px; height:10px; border-radius:50%; border:2px solid var(--white); top:0; transform:translateX(-50%); z-index:2; cursor:help; }
+.tl-marker:hover::after { content:attr(data-tip); position:absolute; bottom:14px; left:50%; transform:translateX(-50%); background:#222; color:#fff; font-size:0.65rem; padding:3px 7px; border-radius:5px; white-space:nowrap; z-index:10; pointer-events:none; }
+.tl-bolsas { font-size:0.7rem; color:#999; text-align:right; }
+.legend { display:flex; gap:18px; flex-wrap:wrap; margin-top:12px; padding-top:12px; border-top:1px solid var(--gris-claro); }
+.leg-i { display:flex; align-items:center; gap:6px; font-size:0.72rem; color:#888; }
+.leg-dot { width:10px; height:10px; border-radius:50%; }
+
+/* NO RESULTS */
+.nores { text-align:center; padding:50px; color:#ccc; font-size:0.9rem; }
+
+@media(max-width:900px){ .stats{grid-template-columns:1fr 1fr} }
+@media(max-width:600px){ .stats{grid-template-columns:1fr 1fr}; header{flex-direction:column} }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>🌽 Precampaña Maíz 2025–2026 — Terra Salto</h1>
+    <div class="sub">Historial de ventas 2023 · 2024 · 2025 · 98 clientes analizados</div>
+  </div>
+  <div class="badge">⚡ Arranque 31/3/2026</div>
+</header>
+
+<div class="wrap">
+
+  <div class="stats" id="statsBox"></div>
+
+  <div class="filters">
+    <label>Buscar</label>
+    <input type="text" id="q" placeholder="Nombre de cliente…" oninput="render()">
+    <div class="sep"></div>
+    <label>Años</label>
+    <select id="yf" onchange="render()">
+      <option value="">Todos</option>
+      <option value="3">3 años</option>
+      <option value="2">2 años</option>
+      <option value="1">Solo 1 año</option>
+    </select>
+    <div class="sep"></div>
+    <label>Prioridad</label>
+    <button class="btn-p on" id="bAll" onclick="setP('all')">Todos</button>
+    <button class="btn-p" id="bAlta" onclick="setP('alta')">🔴 Alta</button>
+    <button class="btn-p" id="bMedia" onclick="setP('media')">🟠 Media</button>
+    <button class="btn-p" id="bNormal" onclick="setP('normal')">🟢 Normal</button>
+    <div class="sep"></div>
+    <label>Ordenar</label>
+    <select id="sf" onchange="render()">
+      <option value="priority">Prioridad</option>
+      <option value="bolsas">Bolsas totales</option>
+      <option value="nombre">Nombre A-Z</option>
+      <option value="mes23">1ª compra 2023</option>
+      <option value="mes24">1ª compra 2024</option>
+      <option value="mes25">1ª compra 2025</option>
+    </select>
+  </div>
+
+  <div class="tbl-wrap">
+    <div class="tbl-head">
+      <h2>Clientes a contactar — ordenados por prioridad de precampaña</h2>
+      <span class="cnt" id="cnt">98 clientes</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Cliente</th>
+          <th>Prioridad</th>
+          <th>Campañas</th>
+          <th>Actividad mensual (Abr→Nov)</th>
+          <th>Bolsas</th>
+          <th>1ª compra '23</th>
+          <th>1ª compra '24</th>
+          <th>1ª compra '25</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div id="nores" class="nores" style="display:none">Sin resultados.</div>
+  </div>
+
+  <div class="tl-section">
+    <h2>📅 Timeline — primeras compras por campaña (top 35 por volumen)</h2>
+    <div class="tl-sub">Cada punto = primera factura de esa campaña. Posición horizontal = mes del año.</div>
+    <div class="tl-axis">
+      <div></div>
+      <div class="tl-axis-lbls"><span>ABR</span><span>MAY</span><span>JUN</span><span>JUL</span><span>AGO</span><span>SEP</span><span>OCT</span><span>NOV</span><span>DIC</span></div>
+      <div></div>
+    </div>
+    <div id="tlGrid"></div>
+    <div class="legend">
+      <div class="leg-i"><div class="leg-dot" style="background:#1a56db"></div>Campaña 2023</div>
+      <div class="leg-i"><div class="leg-dot" style="background:#7828c4"></div>Campaña 2024</div>
+      <div class="leg-i"><div class="leg-dot" style="background:#9a5a00"></div>Campaña 2025</div>
+      <div class="leg-i" style="margin-left:auto;color:#bbb;font-size:.7rem">Punto = primera compra. Tamaño indica volumen relativo.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const D = [{"id":"1795759","nombre":"ORTIZ BASUALDO LUIS MARIA BARTOLOME","años":[{"año":2023,"primera_compra":"2023-05-24","primer_mes":5,"primer_dia":24,"total_bolsas":471.0,"n_facturas":6}],"transacciones":[{"fecha":"2023-05-24","CANT":112.0,"Hibrido":"72-10PRO4","año":2023},{"fecha":"2023-05-24","CANT":133.0,"Hibrido":"73-20PR04","año":2023},{"fecha":"2023-05-24","CANT":89.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-05-24","CANT":89.0,"Hibrido":"72-08TRE","año":2023},{"fecha":"2023-05-24","CANT":47.0,"Hibrido":"72-10RR","año":2023},{"fecha":"2023-05-24","CANT":1.0,"Hibrido":"73-20PR04","año":2023}]},{"id":"1795846","nombre":"ESTRUGAMOU ERNESTO ANDRES","años":[{"año":2023,"primera_compra":"2023-06-15","primer_mes":6,"primer_dia":15,"total_bolsas":50.0,"n_facturas":2},{"año":2024,"primera_compra":"2024-08-23","primer_mes":8,"primer_dia":23,"total_bolsas":101.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-06-15","CANT":35.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-06-15","CANT":15.0,"Hibrido":"72-10VT3PH","año":2023},{"fecha":"2024-08-23","CANT":72.0,"Hibrido":"DK 72-10PRO4","año":2024},{"fecha":"2024-08-23","CANT":8.0,"Hibrido":"DK 72-10RR","año":2024},{"fecha":"2024-08-23","CANT":7.0,"Hibrido":"DK 72-10PRO4","año":2024},{"fecha":"2024-08-23","CANT":14.0,"Hibrido":"DK 72-72TRE","año":2024}]},{"id":"1795931","nombre":"BOUVIER GERMAN CLAUDIO","años":[{"año":2023,"primera_compra":"2023-04-24","primer_mes":4,"primer_dia":24,"total_bolsas":61.0,"n_facturas":2},{"año":2024,"primera_compra":"2024-06-03","primer_mes":6,"primer_dia":3,"total_bolsas":120.0,"n_facturas":2},{"año":2025,"primera_compra":"2025-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":156.0,"n_facturas":6}],"transacciones":[{"fecha":"2023-04-24","CANT":41.0,"Hibrido":"72-20PRO4","año":2023},{"fecha":"2023-04-24","CANT":20.0,"Hibrido":"73-20PR04","año":2023},{"fecha":"2024-06-03","CANT":108.0,"Hibrido":"DK 72-10PRO4","año":2024},{"fecha":"2024-06-03","CANT":12.0,"Hibrido":"DK 72-10RR","año":2024},{"fecha":"2025-04-28","CANT":20.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-04-28","CANT":100.0,"Hibrido":"72-20PRO4 RIB","año":2025},{"fecha":"2025-04-28","CANT":3.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-04-28","CANT":1.0,"Hibrido":"72-20PRO4 RIB","año":2025},{"fecha":"2025-05-15","CANT":30.0,"Hibrido":"72-10PRO4 RIB","año":2025},{"fecha":"2025-05-15","CANT":2.0,"Hibrido":"72-10PRO4 RIB","año":2025}]},{"id":"1795956","nombre":"BACCINELLI RUBEN O","años":[{"año":2024,"primera_compra":"2024-08-29","primer_mes":8,"primer_dia":29,"total_bolsas":101.0,"n_facturas":5}],"transacciones":[{"fecha":"2024-08-29","CANT":45.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-08-29","CANT":5.0,"Hibrido":"DK 72-10RR","año":2024},{"fecha":"2024-08-29","CANT":45.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-08-29","CANT":5.0,"Hibrido":"DK 72-10RR","año":2024},{"fecha":"2024-08-29","CANT":1.0,"Hibrido":"DK 72-72TRE","año":2024}]},{"id":"1796048","nombre":"ANDRIOLI NORBERTO DISERIO","años":[{"año":2023,"primera_compra":"2023-05-24","primer_mes":5,"primer_dia":24,"total_bolsas":61.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-05-24","CANT":61.0,"Hibrido":"72-72RIB","año":2023}]},{"id":"1796063","nombre":"MARGINEDA JOSE JAIME","años":[{"año":2023,"primera_compra":"2023-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":207.0,"n_facturas":6},{"año":2024,"primera_compra":"2024-05-27","primer_mes":5,"primer_dia":27,"total_bolsas":164.0,"n_facturas":5}],"transacciones":[{"fecha":"2023-04-28","CANT":92.0,"Hibrido":"72-72VT3P","año":2023},{"fecha":"2023-04-28","CANT":5.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-04-28","CANT":30.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2023-04-28","CANT":22.0,"Hibrido":"73-03TRE","año":2023},{"fecha":"2023-04-28","CANT":8.0,"Hibrido":"73-03TRE","año":2023},{"fecha":"2023-11-16","CANT":50.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-05-27","CANT":13.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-27","CANT":117.0,"Hibrido":"DK 72-70TRE","año":2024},{"fecha":"2024-05-27","CANT":3.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-27","CANT":27.0,"Hibrido":"DK 72-70TRE","año":2024},{"fecha":"2024-05-27","CANT":4.0,"Hibrido":"DK 72-70TRE","año":2024}]},{"id":"1797978","nombre":"CARDINALI HECTOR","años":[{"año":2023,"primera_compra":"2023-04-17","primer_mes":4,"primer_dia":17,"total_bolsas":42.0,"n_facturas":3},{"año":2024,"primera_compra":"2024-04-22","primer_mes":4,"primer_dia":22,"total_bolsas":90.0,"n_facturas":2},{"año":2025,"primera_compra":"2025-06-11","primer_mes":6,"primer_dia":11,"total_bolsas":80.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-04-17","CANT":36.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-04-17","CANT":4.0,"Hibrido":"72-20RR","año":2023},{"fecha":"2023-04-17","CANT":2.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-04-22","CANT":9.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-04-22","CANT":81.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2025-06-11","CANT":40.0,"Hibrido":"72-20PRO4 RIB","año":2025},{"fecha":"2025-06-11","CANT":18.0,"Hibrido":"72-72TRE","año":2025},{"fecha":"2025-06-11","CANT":18.0,"Hibrido":"73-73TRE","año":2025},{"fecha":"2025-06-11","CANT":4.0,"Hibrido":"72-72RR","año":2025}]},{"id":"1798237","nombre":"PELAGALLI RICARDO","años":[{"año":2024,"primera_compra":"2024-04-26","primer_mes":4,"primer_dia":26,"total_bolsas":165.0,"n_facturas":2},{"año":2025,"primera_compra":"2025-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":159.0,"n_facturas":2}],"transacciones":[{"fecha":"2024-04-26","CANT":45.0,"Hibrido":"DK 72-20RR","año":2024},{"fecha":"2024-04-26","CANT":120.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2025-04-28","CANT":31.0,"Hibrido":"72-72RR","año":2025},{"fecha":"2025-04-28","CANT":128.0,"Hibrido":"72-20RR","año":2025}]},{"id":"1798793","nombre":"MASSI HECTOR ANGEL","años":[{"año":2024,"primera_compra":"2024-11-22","primer_mes":11,"primer_dia":22,"total_bolsas":45.0,"n_facturas":3},{"año":2025,"primera_compra":"2025-04-23","primer_mes":4,"primer_dia":23,"total_bolsas":70.0,"n_facturas":2}],"transacciones":[{"fecha":"2024-11-22","CANT":4.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-11-22","CANT":36.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-11-22","CANT":5.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2025-04-23","CANT":40.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-23","CANT":30.0,"Hibrido":"69-62TRE RIB","año":2025}]},{"id":"1799505","nombre":"PINO NESTOR EDUARDO","años":[{"año":2024,"primera_compra":"2024-08-26","primer_mes":8,"primer_dia":26,"total_bolsas":254.0,"n_facturas":5},{"año":2025,"primera_compra":"2025-09-16","primer_mes":9,"primer_dia":16,"total_bolsas":301.0,"n_facturas":2}],"transacciones":[{"fecha":"2024-08-26","CANT":45.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-08-26","CANT":5.0,"Hibrido":"DK 72-10RR","año":2024},{"fecha":"2024-09-19","CANT":104.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-10-29","CANT":90.0,"Hibrido":"DK 72-20PRO4","año":2024},{"fecha":"2024-10-29","CANT":10.0,"Hibrido":"DK 72-20RR","año":2024},{"fecha":"2025-09-16","CANT":201.0,"Hibrido":"72-72TRE","año":2025},{"fecha":"2025-09-16","CANT":100.0,"Hibrido":"69-62TRE","año":2025}]},{"id":"1800043","nombre":"MORETTINI MIGUEL ANGEL","años":[{"año":2025,"primera_compra":"2025-05-07","primer_mes":5,"primer_dia":7,"total_bolsas":130.0,"n_facturas":4}],"transacciones":[{"fecha":"2025-05-07","CANT":81.0,"Hibrido":"72-10PRO4","año":2025},{"fecha":"2025-05-07","CANT":9.0,"Hibrido":"72-20RR","año":2025},{"fecha":"2025-05-07","CANT":3.0,"Hibrido":"72-10PRO4","año":2025},{"fecha":"2025-05-07","CANT":37.0,"Hibrido":"72-72RR","año":2025}]},{"id":"1800494","nombre":"COSTANTINI GUSTAVO A","años":[{"año":2023,"primera_compra":"2023-07-19","primer_mes":7,"primer_dia":19,"total_bolsas":30.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-07-19","CANT":30.0,"Hibrido":"72-72RIB","año":2023}]},{"id":"1802086","nombre":"LA FAUSTINA SOC ANON INMOBILIARIA Y AGROPECUARIA","años":[{"año":2025,"primera_compra":"2025-05-27","primer_mes":5,"primer_dia":27,"total_bolsas":200.0,"n_facturas":4}],"transacciones":[{"fecha":"2025-05-27","CANT":100.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-05-27","CANT":45.0,"Hibrido":"69-62TRE","año":2025},{"fecha":"2025-05-27","CANT":45.0,"Hibrido":"72-08TRE","año":2025},{"fecha":"2025-05-27","CANT":10.0,"Hibrido":"72-72RR","año":2025}]},{"id":"1802106","nombre":"MARTIN SERGIO ALBERTO Y MARTIN OMAR JOSE NORBERTO","años":[{"año":2023,"primera_compra":"2023-07-10","primer_mes":7,"primer_dia":10,"total_bolsas":25.0,"n_facturas":1},{"año":2024,"primera_compra":"2024-05-13","primer_mes":5,"primer_dia":13,"total_bolsas":65.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-07-10","CANT":25.0,"Hibrido":"72-20PRO4","año":2023},{"fecha":"2024-05-13","CANT":65.0,"Hibrido":"DK 72-10PRO4RIB","año":2024}]},{"id":"1802910","nombre":"CAMPO REGUE SA","años":[{"año":2023,"primera_compra":"2023-05-23","primer_mes":5,"primer_dia":23,"total_bolsas":61.0,"n_facturas":3},{"año":2024,"primera_compra":"2024-06-03","primer_mes":6,"primer_dia":3,"total_bolsas":70.0,"n_facturas":2},{"año":2025,"primera_compra":"2025-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":61.0,"n_facturas":2}],"transacciones":[{"fecha":"2023-05-23","CANT":54.0,"Hibrido":"73-03TRE","año":2023},{"fecha":"2023-05-23","CANT":6.0,"Hibrido":"72-10RR","año":2023},{"fecha":"2023-05-23","CANT":1.0,"Hibrido":"73-03TRE","año":2023},{"fecha":"2024-06-03","CANT":7.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-06-03","CANT":63.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2025-04-28","CANT":60.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-28","CANT":1.0,"Hibrido":"72-72TRE RIB","año":2025}]},{"id":"1803074","nombre":"SAN PATRICIO S.A","años":[{"año":2024,"primera_compra":"2024-09-11","primer_mes":9,"primer_dia":11,"total_bolsas":110.0,"n_facturas":2}],"transacciones":[{"fecha":"2024-09-11","CANT":11.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-09-11","CANT":99.0,"Hibrido":"DK 72-72TRE","año":2024}]},{"id":"1804545","nombre":"LOVICH MARIO Y ANTONIO","años":[{"año":2023,"primera_compra":"2023-04-19","primer_mes":4,"primer_dia":19,"total_bolsas":120.0,"n_facturas":2},{"año":2024,"primera_compra":"2024-05-09","primer_mes":5,"primer_dia":9,"total_bolsas":116.0,"n_facturas":7}],"transacciones":[{"fecha":"2023-04-19","CANT":108.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2023-04-19","CANT":12.0,"Hibrido":"72-20RR","año":2023},{"fecha":"2024-05-09","CANT":5.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-09","CANT":45.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-05-09","CANT":5.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-09","CANT":45.0,"Hibrido":"DK 73-03TRE","año":2024},{"fecha":"2024-05-09","CANT":1.0,"Hibrido":"DK 73-03TRE","año":2024},{"fecha":"2024-06-27","CANT":10.0,"Hibrido":"DK 72-72TRE RIB","año":2024},{"fecha":"2024-06-27","CANT":5.0,"Hibrido":"DK 72-72TRE RIB","año":2024}]},{"id":"1804851","nombre":"LOS OLMOS SRL","años":[{"año":2023,"primera_compra":"2023-05-15","primer_mes":5,"primer_dia":15,"total_bolsas":101.0,"n_facturas":4},{"año":2024,"primera_compra":"2024-08-01","primer_mes":8,"primer_dia":1,"total_bolsas":101.0,"n_facturas":3},{"año":2025,"primera_compra":"2025-07-31","primer_mes":7,"primer_dia":31,"total_bolsas":115.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-05-15","CANT":50.0,"Hibrido":"72-72VT3P","año":2023},{"fecha":"2023-05-15","CANT":45.0,"Hibrido":"73-03TRE","año":2023},{"fecha":"2023-05-15","CANT":5.0,"Hibrido":"72-10RR","año":2023},{"fecha":"2023-05-15","CANT":1.0,"Hibrido":"73-03TRE","año":2023},{"fecha":"2024-08-01","CANT":90.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-08-01","CANT":10.0,"Hibrido":"DK 72-10RR","año":2024},{"fecha":"2024-08-01","CANT":1.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2025-07-31","CANT":115.0,"Hibrido":"69-62TRE RIB","año":2025}]},{"id":"1806616","nombre":"LAGUNA EL ÑANDU SA","años":[{"año":2023,"primera_compra":"2023-12-20","primer_mes":12,"primer_dia":20,"total_bolsas":45.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-12-20","CANT":45.0,"Hibrido":"72-72TRE","año":2023}]},{"id":"1806971","nombre":"LAURO O ANGELLOTTI Y MARIA I R","años":[{"año":2023,"primera_compra":"2023-12-01","primer_mes":12,"primer_dia":1,"total_bolsas":54.0,"n_facturas":1},{"año":2025,"primera_compra":"2025-06-12","primer_mes":6,"primer_dia":12,"total_bolsas":57.0,"n_facturas":2}],"transacciones":[{"fecha":"2023-12-01","CANT":54.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2025-06-12","CANT":50.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-06-12","CANT":7.0,"Hibrido":"69-62TRE RIB","año":2025}]},{"id":"1807577","nombre":"NAVARRINE ROSANA Y GUSTAVO","años":[{"año":2023,"primera_compra":"2023-06-27","primer_mes":6,"primer_dia":27,"total_bolsas":63.0,"n_facturas":1},{"año":2025,"primera_compra":"2025-07-14","primer_mes":7,"primer_dia":14,"total_bolsas":50.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-06-27","CANT":63.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2025-07-14","CANT":50.0,"Hibrido":"72-10PRO4","año":2025}]},{"id":"1810014","nombre":"GHIOZZI ALBERTO","años":[{"año":2023,"primera_compra":"2023-07-14","primer_mes":7,"primer_dia":14,"total_bolsas":31.0,"n_facturas":1},{"año":2024,"primera_compra":"2024-05-31","primer_mes":5,"primer_dia":31,"total_bolsas":50.0,"n_facturas":1},{"año":2025,"primera_compra":"2025-05-15","primer_mes":5,"primer_dia":15,"total_bolsas":61.0,"n_facturas":2}],"transacciones":[{"fecha":"2023-07-14","CANT":31.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2024-05-31","CANT":50.0,"Hibrido":"DK 72-10PRO4RIB","año":2024},{"fecha":"2025-05-15","CANT":1.0,"Hibrido":"72-10PRO4 RIB","año":2025},{"fecha":"2025-05-15","CANT":60.0,"Hibrido":"72-10PRO4 RIB","año":2025}]},{"id":"1814564","nombre":"ESTRUGAMOU GUILLERMO","años":[{"año":2024,"primera_compra":"2024-09-24","primer_mes":9,"primer_dia":24,"total_bolsas":50.0,"n_facturas":3}],"transacciones":[{"fecha":"2024-09-24","CANT":27.0,"Hibrido":"72-10PRO4","año":2024},{"fecha":"2024-09-24","CANT":3.0,"Hibrido":"72-10RR","año":2024},{"fecha":"2024-09-24","CANT":20.0,"Hibrido":"72-10RR","año":2024}]},{"id":"1815527","nombre":"AGROPORT SOCIEDAD ANONIMA COMERCIAL","años":[{"año":2023,"primera_compra":"2023-04-18","primer_mes":4,"primer_dia":18,"total_bolsas":594.0,"n_facturas":10},{"año":2024,"primera_compra":"2024-05-06","primer_mes":5,"primer_dia":6,"total_bolsas":710.0,"n_facturas":14},{"año":2025,"primera_compra":"2025-05-06","primer_mes":5,"primer_dia":6,"total_bolsas":450.0,"n_facturas":6}],"transacciones":[{"fecha":"2023-04-18","CANT":208.0,"Hibrido":"72-72RIB","año":2023},{"fecha":"2023-04-18","CANT":99.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2023-04-18","CANT":11.0,"Hibrido":"72-20RR","año":2023},{"fecha":"2023-04-18","CANT":1.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2023-04-18","CANT":20.0,"Hibrido":"69-62VT3P","año":2023},{"fecha":"2023-04-18","CANT":90.0,"Hibrido":"72-08TRE","año":2023},{"fecha":"2023-04-18","CANT":10.0,"Hibrido":"72-20RR","año":2023},{"fecha":"2023-04-20","CANT":135.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-04-20","CANT":15.0,"Hibrido":"72-20RR","año":2023},{"fecha":"2023-04-20","CANT":5.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-05-10","CANT":108.0,"Hibrido":"DK 72-70TRE","año":2024},{"fecha":"2024-05-10","CANT":12.0,"Hibrido":"DK 72-20RR","año":2024},{"fecha":"2024-05-10","CANT":5.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-10","CANT":45.0,"Hibrido":"DK 73-03TRE","año":2024},{"fecha":"2024-05-10","CANT":7.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-10","CANT":63.0,"Hibrido":"DK 72-20PRO4","año":2024},{"fecha":"2024-05-10","CANT":200.0,"Hibrido":"DK 72-72TRE RIB","año":2024},{"fecha":"2024-05-06","CANT":2.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-06","CANT":18.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-06-10","CANT":50.0,"Hibrido":"DK 72-72TRE RIB","año":2024},{"fecha":"2024-06-26","CANT":10.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-06-26","CANT":90.0,"Hibrido":"DK 72-70TRE","año":2024},{"fecha":"2024-10-15","CANT":90.0,"Hibrido":"72-20PRO4","año":2024},{"fecha":"2024-10-15","CANT":10.0,"Hibrido":"72-20RR","año":2024},{"fecha":"2025-05-06","CANT":220.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-05-06","CANT":130.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-05-06","CANT":30.0,"Hibrido":"72-20PRO4 RIB","año":2025},{"fecha":"2025-05-06","CANT":45.0,"Hibrido":"74-47TRE","año":2025},{"fecha":"2025-05-06","CANT":5.0,"Hibrido":"73-03RR","año":2025},{"fecha":"2025-06-06","CANT":20.0,"Hibrido":"73-73TRE","año":2025}]},{"id":"1822784","nombre":"COSTANTINI LUIS ALBERTO","años":[{"año":2023,"primera_compra":"2023-04-25","primer_mes":4,"primer_dia":25,"total_bolsas":31.0,"n_facturas":3},{"año":2024,"primera_compra":"2024-05-10","primer_mes":5,"primer_dia":10,"total_bolsas":50.0,"n_facturas":7},{"año":2025,"primera_compra":"2025-04-10","primer_mes":4,"primer_dia":10,"total_bolsas":38.0,"n_facturas":2}],"transacciones":[{"fecha":"2023-04-25","CANT":27.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-04-25","CANT":3.0,"Hibrido":"72-20RR","año":2023},{"fecha":"2023-04-25","CANT":1.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-05-10","CANT":3.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-10","CANT":27.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-05-10","CANT":1.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-10","CANT":2.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-05-10","CANT":7.0,"Hibrido":"DK 73-03TRE","año":2024},{"fecha":"2024-05-10","CANT":9.0,"Hibrido":"DK 72-20PRO4","año":2024},{"fecha":"2024-05-10","CANT":1.0,"Hibrido":"DK 72-20RR","año":2024},{"fecha":"2025-04-10","CANT":8.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-10","CANT":30.0,"Hibrido":"72-72TRE RIB","año":2025}]},{"id":"1822785","nombre":"COSTANTINI HORACIO JUAN","años":[{"año":2023,"primera_compra":"2023-04-25","primer_mes":4,"primer_dia":25,"total_bolsas":31.0,"n_facturas":3},{"año":2024,"primera_compra":"2024-05-10","primer_mes":5,"primer_dia":10,"total_bolsas":50.0,"n_facturas":7},{"año":2025,"primera_compra":"2025-04-10","primer_mes":4,"primer_dia":10,"total_bolsas":48.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-04-25","CANT":27.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-04-25","CANT":3.0,"Hibrido":"72-20RR","año":2023},{"fecha":"2023-04-25","CANT":1.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-05-10","CANT":3.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-10","CANT":27.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-05-10","CANT":1.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-10","CANT":2.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-05-10","CANT":7.0,"Hibrido":"DK 73-03TRE","año":2024},{"fecha":"2024-05-10","CANT":9.0,"Hibrido":"DK 72-20PRO4","año":2024},{"fecha":"2024-05-10","CANT":1.0,"Hibrido":"DK 72-20RR","año":2024},{"fecha":"2025-04-10","CANT":8.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-10","CANT":20.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-10","CANT":18.0,"Hibrido":"72-20PRO4","año":2025},{"fecha":"2025-04-10","CANT":2.0,"Hibrido":"72-20RR","año":2025}]},{"id":"1823222","nombre":"CAMPO21.COM SA","años":[{"año":2024,"primera_compra":"2024-05-31","primer_mes":5,"primer_dia":31,"total_bolsas":110.0,"n_facturas":2},{"año":2025,"primera_compra":"2025-05-23","primer_mes":5,"primer_dia":23,"total_bolsas":147.0,"n_facturas":3}],"transacciones":[{"fecha":"2024-05-31","CANT":99.0,"Hibrido":"DK 69-62TRE","año":2024},{"fecha":"2024-05-31","CANT":11.0,"Hibrido":"DK 72-10RR","año":2024},{"fecha":"2025-05-23","CANT":96.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-05-23","CANT":41.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-05-23","CANT":10.0,"Hibrido":"69-62TRE RIB","año":2025}]},{"id":"1824043","nombre":"SKEJIC FERNANDO GABRIEL","años":[{"año":2023,"primera_compra":"2023-05-05","primer_mes":5,"primer_dia":5,"total_bolsas":25.0,"n_facturas":1},{"año":2024,"primera_compra":"2024-07-29","primer_mes":7,"primer_dia":29,"total_bolsas":30.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-05-05","CANT":25.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2024-07-29","CANT":30.0,"Hibrido":"DK 72-70TRE","año":2024}]},{"id":"1827996","nombre":"MARGINEDA JOSE MARTIN","años":[{"año":2023,"primera_compra":"2023-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":208.0,"n_facturas":6},{"año":2024,"primera_compra":"2024-05-13","primer_mes":5,"primer_dia":13,"total_bolsas":144.0,"n_facturas":3},{"año":2025,"primera_compra":"2025-05-08","primer_mes":5,"primer_dia":8,"total_bolsas":310.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-04-28","CANT":92.0,"Hibrido":"72-72VT3P","año":2023},{"fecha":"2023-04-28","CANT":8.0,"Hibrido":"73-03TRE","año":2023},{"fecha":"2023-04-28","CANT":22.0,"Hibrido":"73-03TRE","año":2023},{"fecha":"2023-04-28","CANT":30.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2023-04-28","CANT":6.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-11-16","CANT":50.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-05-13","CANT":4.0,"Hibrido":"DK 72-20PRO4","año":2024},{"fecha":"2024-05-13","CANT":14.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-13","CANT":126.0,"Hibrido":"DK 72-20PRO4","año":2024},{"fecha":"2025-05-08","CANT":171.0,"Hibrido":"72-20PRO4","año":2025},{"fecha":"2025-05-08","CANT":19.0,"Hibrido":"72-20RR","año":2025},{"fecha":"2025-05-08","CANT":108.0,"Hibrido":"72-20PRO4","año":2025},{"fecha":"2025-05-08","CANT":12.0,"Hibrido":"72-20RR","año":2025}]},{"id":"1853628","nombre":"COSTANTINI GUILLERMO DANIEL","años":[{"año":2023,"primera_compra":"2023-04-25","primer_mes":4,"primer_dia":25,"total_bolsas":31.0,"n_facturas":3},{"año":2024,"primera_compra":"2024-05-10","primer_mes":5,"primer_dia":10,"total_bolsas":50.0,"n_facturas":7},{"año":2025,"primera_compra":"2025-04-10","primer_mes":4,"primer_dia":10,"total_bolsas":48.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-04-25","CANT":27.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-04-25","CANT":3.0,"Hibrido":"72-20RR","año":2023},{"fecha":"2023-04-25","CANT":1.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-05-10","CANT":3.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-10","CANT":27.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-05-10","CANT":1.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-10","CANT":2.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-05-10","CANT":7.0,"Hibrido":"DK 73-03TRE","año":2024},{"fecha":"2024-05-10","CANT":9.0,"Hibrido":"DK 72-20PRO4","año":2024},{"fecha":"2024-05-10","CANT":1.0,"Hibrido":"DK 72-20RR","año":2024},{"fecha":"2025-04-10","CANT":8.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-10","CANT":20.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-10","CANT":18.0,"Hibrido":"72-20PRO4","año":2025},{"fecha":"2025-04-10","CANT":2.0,"Hibrido":"72-20RR","año":2025}]},{"id":"1853629","nombre":"COSTANTINI RICARDO ALDO","años":[{"año":2023,"primera_compra":"2023-04-25","primer_mes":4,"primer_dia":25,"total_bolsas":31.0,"n_facturas":3},{"año":2024,"primera_compra":"2024-05-10","primer_mes":5,"primer_dia":10,"total_bolsas":50.0,"n_facturas":7},{"año":2025,"primera_compra":"2025-04-10","primer_mes":4,"primer_dia":10,"total_bolsas":48.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-04-25","CANT":27.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-04-25","CANT":3.0,"Hibrido":"72-20RR","año":2023},{"fecha":"2023-04-25","CANT":1.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-05-10","CANT":3.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-10","CANT":27.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-05-10","CANT":1.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-10","CANT":2.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-05-10","CANT":7.0,"Hibrido":"DK 73-03TRE","año":2024},{"fecha":"2024-05-10","CANT":9.0,"Hibrido":"DK 72-20PRO4","año":2024},{"fecha":"2024-05-10","CANT":1.0,"Hibrido":"DK 72-20RR","año":2024},{"fecha":"2025-04-10","CANT":8.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-10","CANT":20.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-10","CANT":18.0,"Hibrido":"72-20PRO4","año":2025},{"fecha":"2025-04-10","CANT":2.0,"Hibrido":"72-20RR","año":2025}]},{"id":"1858783","nombre":"SAETTONE JORGE ALBERTO","años":[{"año":2023,"primera_compra":"2023-06-27","primer_mes":6,"primer_dia":27,"total_bolsas":200.0,"n_facturas":1},{"año":2024,"primera_compra":"2024-05-13","primer_mes":5,"primer_dia":13,"total_bolsas":153.0,"n_facturas":6},{"año":2025,"primera_compra":"2025-04-16","primer_mes":4,"primer_dia":16,"total_bolsas":209.0,"n_facturas":13}],"transacciones":[{"fecha":"2023-06-27","CANT":200.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2024-05-13","CANT":45.0,"Hibrido":"DK 72-10PRO4","año":2024},{"fecha":"2024-05-13","CANT":45.0,"Hibrido":"DK 72-70TRE","año":2024},{"fecha":"2024-05-13","CANT":45.0,"Hibrido":"DK 72-20PRO4","año":2024},{"fecha":"2024-05-13","CANT":15.0,"Hibrido":"DK 72-20RR","año":2024},{"fecha":"2024-05-13","CANT":1.0,"Hibrido":"DK 72-20PRO4","año":2024},{"fecha":"2024-08-21","CANT":2.0,"Hibrido":"DK 72-70TRE","año":2024},{"fecha":"2025-04-16","CANT":14.0,"Hibrido":"72-10PRO4 RIB","año":2025},{"fecha":"2025-04-16","CANT":16.0,"Hibrido":"72-20PRO4 RIB","año":2025},{"fecha":"2025-04-16","CANT":4.0,"Hibrido":"72-10PRO4 RIB","año":2025},{"fecha":"2025-04-16","CANT":27.0,"Hibrido":"73-03TRE","año":2025},{"fecha":"2025-04-16","CANT":3.0,"Hibrido":"72-20RR","año":2025},{"fecha":"2025-04-16","CANT":3.0,"Hibrido":"73-03TRE","año":2025},{"fecha":"2025-05-07","CANT":63.0,"Hibrido":"72-72TRE","año":2025},{"fecha":"2025-05-07","CANT":27.0,"Hibrido":"73-03TRE","año":2025},{"fecha":"2025-05-07","CANT":10.0,"Hibrido":"72-72RR","año":2025},{"fecha":"2025-05-07","CANT":30.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-05-07","CANT":3.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-05-07","CANT":7.0,"Hibrido":"73-03TRE","año":2025},{"fecha":"2025-05-07","CANT":2.0,"Hibrido":"72-72TRE","año":2025}]},{"id":"1858784","nombre":"MORETTINI MAXIMILIANO EDUARDO","años":[{"año":2023,"primera_compra":"2023-04-27","primer_mes":4,"primer_dia":27,"total_bolsas":169.0,"n_facturas":5},{"año":2024,"primera_compra":"2024-05-13","primer_mes":5,"primer_dia":13,"total_bolsas":200.0,"n_facturas":5},{"año":2025,"primera_compra":"2025-04-16","primer_mes":4,"primer_dia":16,"total_bolsas":184.0,"n_facturas":9}],"transacciones":[{"fecha":"2023-04-27","CANT":23.0,"Hibrido":"72-10PRO4","año":2023},{"fecha":"2023-04-27","CANT":37.0,"Hibrido":"73-20PR04","año":2023},{"fecha":"2023-04-27","CANT":80.0,"Hibrido":"72-10VT3PH","año":2023},{"fecha":"2023-06-28","CANT":4.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2023-09-12","CANT":25.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-05-13","CANT":27.0,"Hibrido":"DK 72-20PRO4","año":2024},{"fecha":"2024-05-13","CANT":3.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-13","CANT":130.0,"Hibrido":"DK 72-10PRO4RIB","año":2024},{"fecha":"2024-05-13","CANT":36.0,"Hibrido":"DK 72-70TRE","año":2024},{"fecha":"2024-05-13","CANT":4.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2025-04-16","CANT":58.0,"Hibrido":"72-10PRO4 RIB","año":2025},{"fecha":"2025-04-16","CANT":52.0,"Hibrido":"72-20PRO4 RIB","año":2025},{"fecha":"2025-04-16","CANT":4.0,"Hibrido":"72-20PRO4 RIB","año":2025},{"fecha":"2025-04-16","CANT":27.0,"Hibrido":"73-03TRE","año":2025},{"fecha":"2025-04-16","CANT":3.0,"Hibrido":"72-20RR","año":2025},{"fecha":"2025-04-16","CANT":3.0,"Hibrido":"73-03TRE","año":2025},{"fecha":"2025-04-16","CANT":4.0,"Hibrido":"72-10PRO4 RIB","año":2025},{"fecha":"2025-04-28","CANT":30.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-04-28","CANT":3.0,"Hibrido":"69-62TRE RIB","año":2025}]},{"id":"1878778","nombre":"NAIQUEL SA","años":[{"año":2023,"primera_compra":"2023-09-05","primer_mes":9,"primer_dia":5,"total_bolsas":82.0,"n_facturas":1},{"año":2024,"primera_compra":"2024-07-15","primer_mes":7,"primer_dia":15,"total_bolsas":140.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-09-05","CANT":82.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-07-15","CANT":140.0,"Hibrido":"DK 72-72TRE RIB","año":2024}]},{"id":"1883374","nombre":"ISACAR SOCIEDAD ANONIMA","años":[{"año":2023,"primera_compra":"2023-05-10","primer_mes":5,"primer_dia":10,"total_bolsas":153.0,"n_facturas":6},{"año":2025,"primera_compra":"2025-06-11","primer_mes":6,"primer_dia":11,"total_bolsas":185.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-05-10","CANT":5.0,"Hibrido":"72-08TRE","año":2023},{"fecha":"2023-05-10","CANT":41.0,"Hibrido":"72-20PRO4","año":2023},{"fecha":"2023-05-10","CANT":41.0,"Hibrido":"73-20PR04","año":2023},{"fecha":"2023-05-10","CANT":35.0,"Hibrido":"72-08TRE","año":2023},{"fecha":"2023-05-10","CANT":13.0,"Hibrido":"72-10RR","año":2023},{"fecha":"2023-10-04","CANT":18.0,"Hibrido":"72-10PRO4","año":2023},{"fecha":"2025-06-11","CANT":135.0,"Hibrido":"72-72TRE","año":2025},{"fecha":"2025-06-11","CANT":27.0,"Hibrido":"74-47TRE","año":2025},{"fecha":"2025-06-11","CANT":18.0,"Hibrido":"72-72RR","año":2025},{"fecha":"2025-06-11","CANT":5.0,"Hibrido":"72-72TRE","año":2025}]},{"id":"1883382","nombre":"DON FIDEL S A","años":[{"año":2023,"primera_compra":"2023-05-10","primer_mes":5,"primer_dia":10,"total_bolsas":188.0,"n_facturas":6},{"año":2024,"primera_compra":"2024-07-31","primer_mes":7,"primer_dia":31,"total_bolsas":283.0,"n_facturas":4},{"año":2025,"primera_compra":"2025-06-11","primer_mes":6,"primer_dia":11,"total_bolsas":185.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-05-10","CANT":6.0,"Hibrido":"72-08TRE","año":2023},{"fecha":"2023-05-10","CANT":49.0,"Hibrido":"72-20PRO4","año":2023},{"fecha":"2023-05-10","CANT":51.0,"Hibrido":"73-20PR04","año":2023},{"fecha":"2023-05-10","CANT":44.0,"Hibrido":"72-08TRE","año":2023},{"fecha":"2023-05-10","CANT":16.0,"Hibrido":"72-10RR","año":2023},{"fecha":"2023-10-04","CANT":22.0,"Hibrido":"72-10PRO4","año":2023},{"fecha":"2024-07-31","CANT":42.0,"Hibrido":"DK 69-62TRE","año":2024},{"fecha":"2024-07-31","CANT":210.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-07-31","CANT":28.0,"Hibrido":"DK 73-03RR","año":2024},{"fecha":"2024-07-31","CANT":3.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2025-06-11","CANT":135.0,"Hibrido":"72-72TRE","año":2025},{"fecha":"2025-06-11","CANT":27.0,"Hibrido":"74-47TRE","año":2025},{"fecha":"2025-06-11","CANT":18.0,"Hibrido":"72-72RR","año":2025},{"fecha":"2025-06-11","CANT":5.0,"Hibrido":"72-72TRE","año":2025}]},{"id":"1889758","nombre":"TERRA SALTO SRL","años":[{"año":2023,"primera_compra":"2023-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":808.0,"n_facturas":19},{"año":2024,"primera_compra":"2024-04-30","primer_mes":4,"primer_dia":30,"total_bolsas":826.0,"n_facturas":14},{"año":2025,"primera_compra":"2025-06-05","primer_mes":6,"primer_dia":5,"total_bolsas":1817.0,"n_facturas":39}],"transacciones":[{"fecha":"2023-04-28","CANT":4.0,"Hibrido":"73-20PR04","año":2023},{"fecha":"2023-05-15","CANT":50.0,"Hibrido":"72-20PRO4","año":2023},{"fecha":"2023-05-22","CANT":100.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2023-06-15","CANT":69.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2023-08-30","CANT":380.0,"Hibrido":"72-20PRO4/72-72TRE","año":2023},{"fecha":"2024-04-30","CANT":400.0,"Hibrido":"DK 72-72/72-20","año":2024},{"fecha":"2024-12-30","CANT":227.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2025-06-05","CANT":15.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-07-18","CANT":164.0,"Hibrido":"72-10PRO4 RIB","año":2025},{"fecha":"2025-08-13","CANT":177.0,"Hibrido":"72-72TRE","año":2025},{"fecha":"2025-09-04","CANT":650.0,"Hibrido":"72-10PRO4/69-62","año":2025},{"fecha":"2025-10-15","CANT":134.0,"Hibrido":"72-10PRO4/69-62","año":2025}]},{"id":"1918191","nombre":"COSTANTINI JOSE CARLOS","años":[{"año":2023,"primera_compra":"2023-04-25","primer_mes":4,"primer_dia":25,"total_bolsas":31.0,"n_facturas":3},{"año":2024,"primera_compra":"2024-05-10","primer_mes":5,"primer_dia":10,"total_bolsas":50.0,"n_facturas":7},{"año":2025,"primera_compra":"2025-04-10","primer_mes":4,"primer_dia":10,"total_bolsas":48.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-04-25","CANT":27.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-04-25","CANT":3.0,"Hibrido":"72-20RR","año":2023},{"fecha":"2023-04-25","CANT":1.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-05-10","CANT":3.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-10","CANT":27.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-05-10","CANT":1.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-05-10","CANT":2.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-05-10","CANT":7.0,"Hibrido":"DK 73-03TRE","año":2024},{"fecha":"2024-05-10","CANT":9.0,"Hibrido":"DK 72-20PRO4","año":2024},{"fecha":"2024-05-10","CANT":1.0,"Hibrido":"DK 72-20RR","año":2024},{"fecha":"2025-04-10","CANT":8.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-10","CANT":20.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-10","CANT":18.0,"Hibrido":"72-20PRO4","año":2025},{"fecha":"2025-04-10","CANT":2.0,"Hibrido":"72-20RR","año":2025}]},{"id":"1925209","nombre":"SUCESION DE ARNAU LEONARDO JAVIER","años":[{"año":2024,"primera_compra":"2024-08-29","primer_mes":8,"primer_dia":29,"total_bolsas":120.0,"n_facturas":3}],"transacciones":[{"fecha":"2024-08-29","CANT":74.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-08-29","CANT":12.0,"Hibrido":"DK 73-03RR","año":2024},{"fecha":"2024-08-29","CANT":34.0,"Hibrido":"DK 73-03TRE","año":2024}]},{"id":"2459040","nombre":"AGRONOBLE S.A","años":[{"año":2025,"primera_compra":"2025-05-30","primer_mes":5,"primer_dia":30,"total_bolsas":265.0,"n_facturas":2}],"transacciones":[{"fecha":"2025-05-30","CANT":143.0,"Hibrido":"72-10RR","año":2025},{"fecha":"2025-05-30","CANT":122.0,"Hibrido":"72-10PRO4","año":2025}]},{"id":"2879322","nombre":"AGROPECUARIA LA LUCIA S A","años":[{"año":2023,"primera_compra":"2023-04-20","primer_mes":4,"primer_dia":20,"total_bolsas":903.0,"n_facturas":15},{"año":2024,"primera_compra":"2024-05-09","primer_mes":5,"primer_dia":9,"total_bolsas":1366.0,"n_facturas":16},{"año":2025,"primera_compra":"2025-05-16","primer_mes":5,"primer_dia":16,"total_bolsas":1367.0,"n_facturas":7}],"transacciones":[{"fecha":"2023-04-20","CANT":903.0,"Hibrido":"mix grande","año":2023},{"fecha":"2024-05-09","CANT":1169.0,"Hibrido":"DK mix","año":2024},{"fecha":"2024-05-31","CANT":8.0,"Hibrido":"varios","año":2024},{"fecha":"2025-05-16","CANT":1367.0,"Hibrido":"RIB mix","año":2025}]},{"id":"2879323","nombre":"CONTIGIANI LEONARDO, JUAN  Y FELIPE","años":[{"año":2023,"primera_compra":"2023-08-23","primer_mes":8,"primer_dia":23,"total_bolsas":40.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-08-23","CANT":40.0,"Hibrido":"72-72TRE","año":2023}]},{"id":"3088035","nombre":"ORTEAGRO S.A.","años":[{"año":2023,"primera_compra":"2023-09-15","primer_mes":9,"primer_dia":15,"total_bolsas":160.0,"n_facturas":3},{"año":2024,"primera_compra":"2024-08-06","primer_mes":8,"primer_dia":6,"total_bolsas":200.0,"n_facturas":4},{"año":2025,"primera_compra":"2025-06-26","primer_mes":6,"primer_dia":26,"total_bolsas":310.0,"n_facturas":8}],"transacciones":[{"fecha":"2023-09-15","CANT":160.0,"Hibrido":"mix","año":2023},{"fecha":"2024-08-06","CANT":200.0,"Hibrido":"DK mix","año":2024},{"fecha":"2025-06-26","CANT":230.0,"Hibrido":"mix","año":2025},{"fecha":"2025-10-15","CANT":80.0,"Hibrido":"mix","año":2025}]},{"id":"3095481","nombre":"MERCE ROBERTO CARLOS","años":[{"año":2023,"primera_compra":"2023-04-24","primer_mes":4,"primer_dia":24,"total_bolsas":63.0,"n_facturas":3},{"año":2024,"primera_compra":"2024-11-12","primer_mes":11,"primer_dia":12,"total_bolsas":63.0,"n_facturas":3}],"transacciones":[{"fecha":"2023-04-24","CANT":54.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-04-24","CANT":6.0,"Hibrido":"72-20RR","año":2023},{"fecha":"2023-11-09","CANT":3.0,"Hibrido":"73-03TRE","año":2023},{"fecha":"2024-11-12","CANT":6.0,"Hibrido":"DK 72-72RR","año":2024},{"fecha":"2024-11-12","CANT":54.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2024-11-12","CANT":3.0,"Hibrido":"DK 72-72TRE","año":2024}]},{"id":"3111693","nombre":"AGROTAL S.A.","años":[{"año":2023,"primera_compra":"2023-08-11","primer_mes":8,"primer_dia":11,"total_bolsas":270.0,"n_facturas":2},{"año":2024,"primera_compra":"2024-07-12","primer_mes":7,"primer_dia":12,"total_bolsas":340.0,"n_facturas":3},{"año":2025,"primera_compra":"2025-06-12","primer_mes":6,"primer_dia":12,"total_bolsas":290.0,"n_facturas":2}],"transacciones":[{"fecha":"2023-08-11","CANT":270.0,"Hibrido":"72-72RIB/TRE","año":2023},{"fecha":"2024-07-12","CANT":340.0,"Hibrido":"DK mix","año":2024},{"fecha":"2025-06-12","CANT":290.0,"Hibrido":"72-72TRE/RR","año":2025}]},{"id":"3112324","nombre":"APRILE MARIO RODOLFO","años":[{"año":2025,"primera_compra":"2025-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":72.0,"n_facturas":4}],"transacciones":[{"fecha":"2025-04-28","CANT":20.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-04-28","CANT":7.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-04-28","CANT":43.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-28","CANT":2.0,"Hibrido":"72-72TRE RIB","año":2025}]},{"id":"3243534","nombre":"FORCAT SANTIAGO H, ROBERTO Y STERPE","años":[{"año":2025,"primera_compra":"2025-07-21","primer_mes":7,"primer_dia":21,"total_bolsas":222.0,"n_facturas":5}],"transacciones":[{"fecha":"2025-07-21","CANT":190.0,"Hibrido":"74-47TRE/72-72TRE","año":2025},{"fecha":"2025-07-29","CANT":32.0,"Hibrido":"69-62TRE","año":2025}]},{"id":"3255275","nombre":"FORCAT JUAN JOSE Y FORCAT LIDIA BEA","años":[{"año":2025,"primera_compra":"2025-05-07","primer_mes":5,"primer_dia":7,"total_bolsas":100.0,"n_facturas":1}],"transacciones":[{"fecha":"2025-05-07","CANT":100.0,"Hibrido":"72-72TRE RIB","año":2025}]},{"id":"3275739","nombre":"LACROZE ROSA Y ORTIZ BASUALDO PABLO","años":[{"año":2023,"primera_compra":"2023-09-15","primer_mes":9,"primer_dia":15,"total_bolsas":43.0,"n_facturas":3},{"año":2024,"primera_compra":"2024-06-19","primer_mes":6,"primer_dia":19,"total_bolsas":242.0,"n_facturas":6},{"año":2025,"primera_compra":"2025-06-11","primer_mes":6,"primer_dia":11,"total_bolsas":333.0,"n_facturas":5}],"transacciones":[{"fecha":"2023-09-15","CANT":43.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2024-06-19","CANT":152.0,"Hibrido":"DK mix","año":2024},{"fecha":"2024-07-11","CANT":90.0,"Hibrido":"DK mix","año":2024},{"fecha":"2025-06-11","CANT":260.0,"Hibrido":"72-10PRO4 RIB","año":2025},{"fecha":"2025-06-17","CANT":73.0,"Hibrido":"72-10PRO4 RIB","año":2025}]},{"id":"3320002","nombre":"CINGOLANI GABRIEL HERNAN","años":[{"año":2023,"primera_compra":"2023-04-21","primer_mes":4,"primer_dia":21,"total_bolsas":180.0,"n_facturas":4},{"año":2024,"primera_compra":"2024-04-23","primer_mes":4,"primer_dia":23,"total_bolsas":188.0,"n_facturas":5},{"año":2025,"primera_compra":"2025-04-16","primer_mes":4,"primer_dia":16,"total_bolsas":140.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-04-21","CANT":180.0,"Hibrido":"72-70TRE/72-10PRO4","año":2023},{"fecha":"2024-04-23","CANT":188.0,"Hibrido":"DK 72-20PRO4 mix","año":2024},{"fecha":"2025-04-16","CANT":140.0,"Hibrido":"72-72TRE/20PRO4","año":2025}]},{"id":"3358183","nombre":"CONARECO SRL","años":[{"año":2025,"primera_compra":"2025-07-17","primer_mes":7,"primer_dia":17,"total_bolsas":90.0,"n_facturas":3}],"transacciones":[{"fecha":"2025-07-17","CANT":90.0,"Hibrido":"mix","año":2025}]},{"id":"3363941","nombre":"AGRONASAJA SRL","años":[{"año":2023,"primera_compra":"2023-05-19","primer_mes":5,"primer_dia":19,"total_bolsas":700.0,"n_facturas":2}],"transacciones":[{"fecha":"2023-05-19","CANT":500.0,"Hibrido":"72-10VT3PH","año":2023},{"fecha":"2023-05-19","CANT":200.0,"Hibrido":"72-08VT3P","año":2023}]},{"id":"3417428","nombre":"CORESKY GUSTAVO Y ALEJANDRO SH","años":[{"año":2023,"primera_compra":"2023-05-22","primer_mes":5,"primer_dia":22,"total_bolsas":84.0,"n_facturas":3},{"año":2024,"primera_compra":"2024-05-31","primer_mes":5,"primer_dia":31,"total_bolsas":151.0,"n_facturas":2},{"año":2025,"primera_compra":"2025-05-06","primer_mes":5,"primer_dia":6,"total_bolsas":125.0,"n_facturas":2}],"transacciones":[{"fecha":"2023-05-22","CANT":40.0,"Hibrido":"72-72RIB","año":2023},{"fecha":"2023-08-28","CANT":44.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-05-31","CANT":151.0,"Hibrido":"DK 72-10PRO4RIB","año":2024},{"fecha":"2025-05-06","CANT":80.0,"Hibrido":"72-20PRO4 RIB","año":2025},{"fecha":"2025-07-28","CANT":45.0,"Hibrido":"69-62TRE","año":2025}]},{"id":"3457157","nombre":"AZUL JACARANDA SA","años":[{"año":2023,"primera_compra":"2023-08-23","primer_mes":8,"primer_dia":23,"total_bolsas":820.0,"n_facturas":6}],"transacciones":[{"fecha":"2023-08-23","CANT":820.0,"Hibrido":"mix grande","año":2023}]},{"id":"3479528","nombre":"BERMOLI SA","años":[{"año":2023,"primera_compra":"2023-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":101.0,"n_facturas":4},{"año":2025,"primera_compra":"2025-04-16","primer_mes":4,"primer_dia":16,"total_bolsas":101.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-04-28","CANT":101.0,"Hibrido":"72-10PRO4","año":2023},{"fecha":"2025-04-16","CANT":101.0,"Hibrido":"RIB mix","año":2025}]},{"id":"3501087","nombre":"CIRACO GUILLERMO JESUS","años":[{"año":2023,"primera_compra":"2023-05-05","primer_mes":5,"primer_dia":5,"total_bolsas":151.0,"n_facturas":2},{"año":2024,"primera_compra":"2024-07-04","primer_mes":7,"primer_dia":4,"total_bolsas":160.0,"n_facturas":2},{"año":2025,"primera_compra":"2025-04-15","primer_mes":4,"primer_dia":15,"total_bolsas":152.0,"n_facturas":2}],"transacciones":[{"fecha":"2023-05-05","CANT":151.0,"Hibrido":"73-20PR04","año":2023},{"fecha":"2024-07-04","CANT":160.0,"Hibrido":"DK 72-10PRO4","año":2024},{"fecha":"2025-04-15","CANT":112.0,"Hibrido":"72-10PRO4 RIB","año":2025},{"fecha":"2025-06-11","CANT":40.0,"Hibrido":"72-10PRO4 RIB","año":2025}]},{"id":"3516470","nombre":"ALBERTO FARBO SRL","años":[{"año":2025,"primera_compra":"2025-08-26","primer_mes":8,"primer_dia":26,"total_bolsas":30.0,"n_facturas":1}],"transacciones":[{"fecha":"2025-08-26","CANT":30.0,"Hibrido":"69-62TRE","año":2025}]},{"id":"3517150","nombre":"BALAGUER MARCELO ARIEL","años":[{"año":2024,"primera_compra":"2024-04-30","primer_mes":4,"primer_dia":30,"total_bolsas":101.0,"n_facturas":3},{"año":2025,"primera_compra":"2025-06-26","primer_mes":6,"primer_dia":26,"total_bolsas":121.0,"n_facturas":4}],"transacciones":[{"fecha":"2024-04-30","CANT":101.0,"Hibrido":"DK 72-72RR/20PRO4","año":2024},{"fecha":"2025-06-26","CANT":121.0,"Hibrido":"72-72TRE/73-73","año":2025}]},{"id":"3522777","nombre":"SERRANI CARLOS ALBERTO","años":[{"año":2023,"primera_compra":"2023-06-12","primer_mes":6,"primer_dia":12,"total_bolsas":70.0,"n_facturas":2},{"año":2024,"primera_compra":"2024-06-27","primer_mes":6,"primer_dia":27,"total_bolsas":88.0,"n_facturas":6},{"año":2025,"primera_compra":"2025-07-10","primer_mes":7,"primer_dia":10,"total_bolsas":62.0,"n_facturas":3}],"transacciones":[{"fecha":"2023-06-12","CANT":70.0,"Hibrido":"mix","año":2023},{"fecha":"2024-06-27","CANT":50.0,"Hibrido":"DK mix","año":2024},{"fecha":"2024-08-24","CANT":38.0,"Hibrido":"DK mix","año":2024},{"fecha":"2025-07-10","CANT":62.0,"Hibrido":"72-20PRO4","año":2025}]},{"id":"3550358","nombre":"RAPOLA MARCOS Y CELESTE SOC CAP","años":[{"año":2024,"primera_compra":"2024-06-24","primer_mes":6,"primer_dia":24,"total_bolsas":70.0,"n_facturas":4},{"año":2025,"primera_compra":"2025-07-16","primer_mes":7,"primer_dia":16,"total_bolsas":86.0,"n_facturas":3}],"transacciones":[{"fecha":"2024-06-24","CANT":70.0,"Hibrido":"DK mix","año":2024},{"fecha":"2025-07-16","CANT":80.0,"Hibrido":"mix","año":2025},{"fecha":"2025-10-15","CANT":6.0,"Hibrido":"69-62TRE","año":2025}]},{"id":"3584721","nombre":"HIJOS DE HUGO ORTELLI SA","años":[{"año":2024,"primera_compra":"2024-08-22","primer_mes":8,"primer_dia":22,"total_bolsas":160.0,"n_facturas":4}],"transacciones":[{"fecha":"2024-08-22","CANT":160.0,"Hibrido":"DK mix","año":2024}]},{"id":"3604433","nombre":"MANALE S.A","años":[{"año":2025,"primera_compra":"2025-06-06","primer_mes":6,"primer_dia":6,"total_bolsas":67.0,"n_facturas":1}],"transacciones":[{"fecha":"2025-06-06","CANT":67.0,"Hibrido":"72-10RR","año":2025}]},{"id":"3633489","nombre":"LAS MARIA TERESAS SA","años":[{"año":2023,"primera_compra":"2023-05-23","primer_mes":5,"primer_dia":23,"total_bolsas":146.0,"n_facturas":5},{"año":2024,"primera_compra":"2024-05-29","primer_mes":5,"primer_dia":29,"total_bolsas":195.0,"n_facturas":5},{"año":2025,"primera_compra":"2025-06-06","primer_mes":6,"primer_dia":6,"total_bolsas":216.0,"n_facturas":8}],"transacciones":[{"fecha":"2023-05-23","CANT":146.0,"Hibrido":"mix","año":2023},{"fecha":"2024-05-29","CANT":195.0,"Hibrido":"DK mix","año":2024},{"fecha":"2025-06-06","CANT":176.0,"Hibrido":"mix","año":2025},{"fecha":"2025-08-26","CANT":40.0,"Hibrido":"69-62TRE","año":2025}]},{"id":"3638329","nombre":"SANPA SEMILLAS SA","años":[{"año":2023,"primera_compra":"2023-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":161.0,"n_facturas":2},{"año":2024,"primera_compra":"2024-10-18","primer_mes":10,"primer_dia":18,"total_bolsas":40.0,"n_facturas":1},{"año":2025,"primera_compra":"2025-11-26","primer_mes":11,"primer_dia":26,"total_bolsas":135.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-04-28","CANT":101.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2023-05-19","CANT":60.0,"Hibrido":"72-20PRO4","año":2023},{"fecha":"2024-10-18","CANT":40.0,"Hibrido":"DK 72-10PRO4","año":2024},{"fecha":"2025-11-26","CANT":135.0,"Hibrido":"72-20PRO4","año":2025}]},{"id":"3643256","nombre":"LAPADU DANILO","años":[{"año":2024,"primera_compra":"2024-09-13","primer_mes":9,"primer_dia":13,"total_bolsas":55.0,"n_facturas":3}],"transacciones":[{"fecha":"2024-09-13","CANT":55.0,"Hibrido":"DK 72-72TRE/RR","año":2024}]},{"id":"3644219","nombre":"ESTABLECIMIENTO AGROPECUARIO DOÑA SARA SA","años":[{"año":2024,"primera_compra":"2024-08-22","primer_mes":8,"primer_dia":22,"total_bolsas":101.0,"n_facturas":5},{"año":2025,"primera_compra":"2025-09-05","primer_mes":9,"primer_dia":5,"total_bolsas":80.0,"n_facturas":2}],"transacciones":[{"fecha":"2024-08-22","CANT":101.0,"Hibrido":"DK mix","año":2024},{"fecha":"2025-09-05","CANT":80.0,"Hibrido":"72-20RR/PRO4","año":2025}]},{"id":"3664289","nombre":"AGRALITY S.A","años":[{"año":2024,"primera_compra":"2024-09-13","primer_mes":9,"primer_dia":13,"total_bolsas":68.0,"n_facturas":1}],"transacciones":[{"fecha":"2024-09-13","CANT":68.0,"Hibrido":"DK 72-72TRE","año":2024}]},{"id":"3672987","nombre":"PROTOIL S.A","años":[{"año":2024,"primera_compra":"2024-08-14","primer_mes":8,"primer_dia":14,"total_bolsas":93.0,"n_facturas":4},{"año":2025,"primera_compra":"2025-06-27","primer_mes":6,"primer_dia":27,"total_bolsas":80.0,"n_facturas":3}],"transacciones":[{"fecha":"2024-08-14","CANT":93.0,"Hibrido":"DK mix","año":2024},{"fecha":"2025-06-27","CANT":50.0,"Hibrido":"69-62TRE RIB","año":2025},{"fecha":"2025-11-18","CANT":30.0,"Hibrido":"69-62TRE","año":2025}]},{"id":"3687671","nombre":"BOUVIER MARTHA CARMEN","años":[{"año":2023,"primera_compra":"2023-05-02","primer_mes":5,"primer_dia":2,"total_bolsas":31.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-05-02","CANT":31.0,"Hibrido":"72-72RIB","año":2023}]},{"id":"3702755","nombre":"SAURET AZUL DANILA","años":[{"año":2023,"primera_compra":"2023-06-13","primer_mes":6,"primer_dia":13,"total_bolsas":66.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-06-13","CANT":66.0,"Hibrido":"72-70TRE","año":2023}]},{"id":"3725131","nombre":"RSB GROUP AGROPECUARIA S.A.","años":[{"año":2023,"primera_compra":"2023-05-31","primer_mes":5,"primer_dia":31,"total_bolsas":50.0,"n_facturas":1},{"año":2024,"primera_compra":"2024-07-29","primer_mes":7,"primer_dia":29,"total_bolsas":50.0,"n_facturas":2},{"año":2025,"primera_compra":"2025-07-31","primer_mes":7,"primer_dia":31,"total_bolsas":80.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-05-31","CANT":50.0,"Hibrido":"72-72RIB","año":2023},{"fecha":"2024-07-29","CANT":50.0,"Hibrido":"DK 72-72TRE/RR","año":2024},{"fecha":"2025-07-31","CANT":80.0,"Hibrido":"69-62TRE","año":2025}]},{"id":"3725739","nombre":"AGROPECUARIA 3 QUINTALES S.R.L","años":[{"año":2023,"primera_compra":"2023-07-14","primer_mes":7,"primer_dia":14,"total_bolsas":50.0,"n_facturas":1},{"año":2024,"primera_compra":"2024-08-15","primer_mes":8,"primer_dia":15,"total_bolsas":135.0,"n_facturas":3},{"año":2025,"primera_compra":"2025-08-25","primer_mes":8,"primer_dia":25,"total_bolsas":61.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-07-14","CANT":50.0,"Hibrido":"73-20PR04","año":2023},{"fecha":"2024-08-15","CANT":135.0,"Hibrido":"DK 72-10PRO4","año":2024},{"fecha":"2025-08-25","CANT":61.0,"Hibrido":"69-62TRE","año":2025}]},{"id":"3727273","nombre":"BRUFAL ROBERTO JUAN Y BRUFAL RICARDO JOSE","años":[{"año":2024,"primera_compra":"2024-07-26","primer_mes":7,"primer_dia":26,"total_bolsas":50.0,"n_facturas":1},{"año":2025,"primera_compra":"2025-07-29","primer_mes":7,"primer_dia":29,"total_bolsas":61.0,"n_facturas":1}],"transacciones":[{"fecha":"2024-07-26","CANT":50.0,"Hibrido":"DK 72-72TRE RIB","año":2024},{"fecha":"2025-07-29","CANT":61.0,"Hibrido":"69-62TRE RIB","año":2025}]},{"id":"3727304","nombre":"AGROPECUARIA PLAZIBAT","años":[{"año":2025,"primera_compra":"2025-07-31","primer_mes":7,"primer_dia":31,"total_bolsas":134.0,"n_facturas":2}],"transacciones":[{"fecha":"2025-07-31","CANT":134.0,"Hibrido":"72-72TRE/74-47TRE","año":2025}]},{"id":"3731948","nombre":"MERCE EMERSON JAVIER","años":[{"año":2023,"primera_compra":"2023-04-24","primer_mes":4,"primer_dia":24,"total_bolsas":156.0,"n_facturas":4},{"año":2024,"primera_compra":"2024-05-07","primer_mes":5,"primer_dia":7,"total_bolsas":210.0,"n_facturas":2},{"año":2025,"primera_compra":"2025-05-29","primer_mes":5,"primer_dia":29,"total_bolsas":120.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-04-24","CANT":60.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-11-09","CANT":96.0,"Hibrido":"73-03TRE","año":2023},{"fecha":"2024-05-07","CANT":210.0,"Hibrido":"DK 72-72TRE/RR","año":2024},{"fecha":"2025-05-29","CANT":120.0,"Hibrido":"72-72/69-62 RIB","año":2025}]},{"id":"3731949","nombre":"MERCE EDUARDO JOSE","años":[{"año":2023,"primera_compra":"2023-04-24","primer_mes":4,"primer_dia":24,"total_bolsas":61.0,"n_facturas":3},{"año":2024,"primera_compra":"2024-11-12","primer_mes":11,"primer_dia":12,"total_bolsas":62.0,"n_facturas":3}],"transacciones":[{"fecha":"2023-04-24","CANT":60.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2023-11-09","CANT":1.0,"Hibrido":"73-03TRE","año":2023},{"fecha":"2024-11-12","CANT":62.0,"Hibrido":"DK 72-72TRE/RR","año":2024}]},{"id":"3736651","nombre":"MASSI HECTOR CRISTIAN","años":[{"año":2023,"primera_compra":"2023-12-20","primer_mes":12,"primer_dia":20,"total_bolsas":106.0,"n_facturas":1},{"año":2024,"primera_compra":"2024-04-22","primer_mes":4,"primer_dia":22,"total_bolsas":97.0,"n_facturas":7},{"año":2025,"primera_compra":"2025-04-23","primer_mes":4,"primer_dia":23,"total_bolsas":60.0,"n_facturas":2}],"transacciones":[{"fecha":"2023-12-20","CANT":106.0,"Hibrido":"72-70TRE","año":2023},{"fecha":"2024-04-22","CANT":52.0,"Hibrido":"DK mix","año":2024},{"fecha":"2024-11-22","CANT":45.0,"Hibrido":"DK 72-72TRE","año":2024},{"fecha":"2025-04-23","CANT":60.0,"Hibrido":"72-72TRE/69-62 RIB","año":2025}]},{"id":"3753920","nombre":"DI STILIO RICARDO","años":[{"año":2024,"primera_compra":"2024-06-08","primer_mes":6,"primer_dia":8,"total_bolsas":88.0,"n_facturas":5},{"año":2025,"primera_compra":"2025-04-11","primer_mes":4,"primer_dia":11,"total_bolsas":30.0,"n_facturas":1}],"transacciones":[{"fecha":"2024-06-08","CANT":50.0,"Hibrido":"DK 72-72RR/70TRE","año":2024},{"fecha":"2024-06-29","CANT":38.0,"Hibrido":"DK mix","año":2024},{"fecha":"2025-04-11","CANT":30.0,"Hibrido":"72-10PRO4 RIB","año":2025}]},{"id":"3764072","nombre":"AGROPECUARIA LOS PLATANOS S.A","años":[{"año":2025,"primera_compra":"2025-09-09","primer_mes":9,"primer_dia":9,"total_bolsas":21.0,"n_facturas":1}],"transacciones":[{"fecha":"2025-09-09","CANT":21.0,"Hibrido":"69-62TRE","año":2025}]},{"id":"3769360","nombre":"PRETINI ARACELI RAQUEL","años":[{"año":2023,"primera_compra":"2023-11-30","primer_mes":11,"primer_dia":30,"total_bolsas":120.0,"n_facturas":1}],"transacciones":[{"fecha":"2023-11-30","CANT":120.0,"Hibrido":"72-72TRE","año":2023}]},{"id":"3773585","nombre":"APRILE JOSE LUIS","años":[{"año":2023,"primera_compra":"2023-05-23","primer_mes":5,"primer_dia":23,"total_bolsas":50.0,"n_facturas":1},{"año":2025,"primera_compra":"2025-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":60.0,"n_facturas":3}],"transacciones":[{"fecha":"2023-05-23","CANT":50.0,"Hibrido":"72-72RIB","año":2023},{"fecha":"2025-04-28","CANT":60.0,"Hibrido":"72-72/69-62 RIB","año":2025}]},{"id":"3782661","nombre":"RAMOS CARLOS ENRIQUE","años":[{"año":2023,"primera_compra":"2023-05-23","primer_mes":5,"primer_dia":23,"total_bolsas":20.0,"n_facturas":2},{"año":2024,"primera_compra":"2024-06-19","primer_mes":6,"primer_dia":19,"total_bolsas":50.0,"n_facturas":6},{"año":2025,"primera_compra":"2025-04-24","primer_mes":4,"primer_dia":24,"total_bolsas":101.0,"n_facturas":5}],"transacciones":[{"fecha":"2023-05-23","CANT":20.0,"Hibrido":"72-72RIB","año":2023},{"fecha":"2024-06-19","CANT":40.0,"Hibrido":"DK mix","año":2024},{"fecha":"2024-07-30","CANT":10.0,"Hibrido":"DK mix","año":2024},{"fecha":"2025-04-24","CANT":90.0,"Hibrido":"72-72/20PRO4 RIB","año":2025},{"fecha":"2025-04-28","CANT":11.0,"Hibrido":"73-73TRE","año":2025}]},{"id":"3782714","nombre":"RAMOS MARIO FRANCISCO","años":[{"año":2023,"primera_compra":"2023-05-19","primer_mes":5,"primer_dia":19,"total_bolsas":240.0,"n_facturas":4},{"año":2024,"primera_compra":"2024-06-18","primer_mes":6,"primer_dia":18,"total_bolsas":101.0,"n_facturas":5},{"año":2025,"primera_compra":"2025-04-16","primer_mes":4,"primer_dia":16,"total_bolsas":230.0,"n_facturas":8}],"transacciones":[{"fecha":"2023-05-19","CANT":240.0,"Hibrido":"mix","año":2023},{"fecha":"2024-06-18","CANT":61.0,"Hibrido":"DK mix","año":2024},{"fecha":"2024-08-08","CANT":40.0,"Hibrido":"DK 72-72TRE RIB","año":2024},{"fecha":"2025-04-16","CANT":180.0,"Hibrido":"72-72TRE RIB","año":2025},{"fecha":"2025-04-28","CANT":10.0,"Hibrido":"73-73TRE","año":2025},{"fecha":"2025-05-15","CANT":10.0,"Hibrido":"mix","año":2025},{"fecha":"2025-06-25","CANT":30.0,"Hibrido":"73-73TRE","año":2025}]},{"id":"3784101","nombre":"APRILE AGUSTIN","años":[{"año":2023,"primera_compra":"2023-05-23","primer_mes":5,"primer_dia":23,"total_bolsas":66.0,"n_facturas":2},{"año":2024,"primera_compra":"2024-05-13","primer_mes":5,"primer_dia":13,"total_bolsas":176.0,"n_facturas":6},{"año":2025,"primera_compra":"2025-05-06","primer_mes":5,"primer_dia":6,"total_bolsas":87.0,"n_facturas":4}],"transacciones":[{"fecha":"2023-05-23","CANT":66.0,"Hibrido":"72-72RIB","año":2023},{"fecha":"2024-05-13","CANT":151.0,"Hibrido":"DK mix","año":2024},{"fecha":"2024-07-16","CANT":25.0,"Hibrido":"DK 69-62TRE","año":2024},{"fecha":"2025-05-06","CANT":87.0,"Hibrido":"69-62/72-72 RIB","año":2025}]},{"id":"3784946","nombre":"DON PLAZI","años":[{"año":2023,"primera_compra":"2023-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":61.0,"n_facturas":2},{"año":2024,"primera_compra":"2024-05-10","primer_mes":5,"primer_dia":10,"total_bolsas":61.0,"n_facturas":5},{"año":2025,"primera_compra":"2025-04-22","primer_mes":4,"primer_dia":22,"total_bolsas":66.0,"n_facturas":3}],"transacciones":[{"fecha":"2023-04-28","CANT":61.0,"Hibrido":"72-72RIB","año":2023},{"fecha":"2024-05-10","CANT":61.0,"Hibrido":"DK mix","año":2024},{"fecha":"2025-04-22","CANT":66.0,"Hibrido":"72-72TRE RIB","año":2025}]},{"id":"3787539","nombre":"MARTIN SERGIO ALBERTO","años":[{"año":2024,"primera_compra":"2024-05-13","primer_mes":5,"primer_dia":13,"total_bolsas":36.0,"n_facturas":1}],"transacciones":[{"fecha":"2024-05-13","CANT":36.0,"Hibrido":"DK 72-10PRO4RIB","año":2024}]},{"id":"3787858","nombre":"SILVINA GYM SRL","años":[{"año":2025,"primera_compra":"2025-04-24","primer_mes":4,"primer_dia":24,"total_bolsas":70.0,"n_facturas":1}],"transacciones":[{"fecha":"2025-04-24","CANT":70.0,"Hibrido":"72-72TRE RIB","año":2025}]},{"id":"3787926","nombre":"PRETINI MARCELO FABIAN","años":[{"año":2023,"primera_compra":"2023-08-18","primer_mes":8,"primer_dia":18,"total_bolsas":220.0,"n_facturas":2}],"transacciones":[{"fecha":"2023-08-18","CANT":75.0,"Hibrido":"72-72RIB","año":2023},{"fecha":"2023-11-30","CANT":145.0,"Hibrido":"72-72TRE","año":2023}]},{"id":"3820052","nombre":"S&S AGROPECUARIA ","años":[{"año":2025,"primera_compra":"2025-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":69.0,"n_facturas":3}],"transacciones":[{"fecha":"2025-04-28","CANT":69.0,"Hibrido":"69-62/72-72 RIB","año":2025}]},{"id":"3821501","nombre":"AVITEC SRL","años":[{"año":2023,"primera_compra":"2023-06-28","primer_mes":6,"primer_dia":28,"total_bolsas":80.0,"n_facturas":1},{"año":2024,"primera_compra":"2024-06-28","primer_mes":6,"primer_dia":28,"total_bolsas":187.0,"n_facturas":3}],"transacciones":[{"fecha":"2023-06-28","CANT":80.0,"Hibrido":"72-72TRE","año":2023},{"fecha":"2024-06-28","CANT":187.0,"Hibrido":"DK 72-10PRO4RIB","año":2024}]},{"id":"3885557","nombre":"RAICES AGRICOLA GANADERA","años":[{"año":2024,"primera_compra":"2024-06-04","primer_mes":6,"primer_dia":4,"total_bolsas":373.0,"n_facturas":7},{"año":2025,"primera_compra":"2025-06-10","primer_mes":6,"primer_dia":10,"total_bolsas":396.0,"n_facturas":8}],"transacciones":[{"fecha":"2024-06-04","CANT":373.0,"Hibrido":"DK mix","año":2024},{"fecha":"2025-06-10","CANT":396.0,"Hibrido":"mix","año":2025}]},{"id":"3906384","nombre":"ORSINI JULIO OSCAR","años":[{"año":2025,"primera_compra":"2025-06-06","primer_mes":6,"primer_dia":6,"total_bolsas":40.0,"n_facturas":2}],"transacciones":[{"fecha":"2025-06-06","CANT":40.0,"Hibrido":"72-72TRE RIB","año":2025}]},{"id":"3908109","nombre":"SALVO MARIA DEL CARMEN","años":[{"año":2024,"primera_compra":"2024-07-23","primer_mes":7,"primer_dia":23,"total_bolsas":30.0,"n_facturas":1},{"año":2025,"primera_compra":"2025-04-23","primer_mes":4,"primer_dia":23,"total_bolsas":40.0,"n_facturas":1}],"transacciones":[{"fecha":"2024-07-23","CANT":30.0,"Hibrido":"DK 72-72TRE RIB","año":2024},{"fecha":"2025-04-23","CANT":40.0,"Hibrido":"72-72TRE RIB","año":2025}]},{"id":"3908632","nombre":"CELLERE SA","años":[{"año":2024,"primera_compra":"2024-08-12","primer_mes":8,"primer_dia":12,"total_bolsas":301.0,"n_facturas":2},{"año":2025,"primera_compra":"2025-06-13","primer_mes":6,"primer_dia":13,"total_bolsas":220.0,"n_facturas":2}],"transacciones":[{"fecha":"2024-08-12","CANT":301.0,"Hibrido":"DK 74-47TRE","año":2024},{"fecha":"2025-06-13","CANT":220.0,"Hibrido":"72-10PRO4 RIB","año":2025}]},{"id":"3919049","nombre":"COCITTO ALDO ADOLFO Y COCITTO ANDRES SH","años":[{"año":2025,"primera_compra":"2025-04-10","primer_mes":4,"primer_dia":10,"total_bolsas":50.0,"n_facturas":1}],"transacciones":[{"fecha":"2025-04-10","CANT":50.0,"Hibrido":"72-10PRO4 RIB","año":2025}]},{"id":"3919432","nombre":"ORTELLI AGROPECUARIA S.A","años":[{"año":2025,"primera_compra":"2025-05-06","primer_mes":5,"primer_dia":6,"total_bolsas":450.0,"n_facturas":2}],"transacciones":[{"fecha":"2025-05-06","CANT":250.0,"Hibrido":"72-20PRO4 RIB","año":2025},{"fecha":"2025-05-06","CANT":200.0,"Hibrido":"72-72TRE RIB","año":2025}]},{"id":"3919504","nombre":"LOVICH AGOSTINI SERVICIOS SRL ","años":[{"año":2025,"primera_compra":"2025-05-29","primer_mes":5,"primer_dia":29,"total_bolsas":130.0,"n_facturas":3}],"transacciones":[{"fecha":"2025-05-29","CANT":130.0,"Hibrido":"73-03TRE/72-72 RIB","año":2025}]},{"id":"3919554","nombre":"APRILE SIGNORIO","años":[{"año":2025,"primera_compra":"2025-04-28","primer_mes":4,"primer_dia":28,"total_bolsas":28.0,"n_facturas":2}],"transacciones":[{"fecha":"2025-04-28","CANT":28.0,"Hibrido":"72-72TRE RIB","año":2025}]}];
+
+// ── HELPERS ──
+const CLRS = {2023:'#1a56db',2024:'#7828c4',2025:'#9a5a00'};
+function totalB(c){return c.años.reduce((s,a)=>s+a.total_bolsas,0);}
+function avgMes(c){const m=c.años.map(a=>a.primer_mes);return m.reduce((s,v)=>s+v,0)/m.length;}
+function prio(c){
+  const n=c.años.length, m=avgMes(c), b=totalB(c);
+  if(n>=2 && m<=5 && b>=100) return 'alta';
+  if(n>=2 && m<=6) return 'alta';
+  if(n>=2 || b>=200) return 'media';
+  return 'normal';
+}
+function ppeso(p){return p==='alta'?0:p==='media'?1:2;}
+function ydata(c,y){return c.años.find(a=>a.año===y);}
+function fdate(s){if(!s||s==='undefined')return'—';const[,m,d]=s.split('-');const ms=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];return `${+d} ${ms[+m-1]}`;}
+
+D.forEach(c=>{c._p=prio(c);c._b=totalB(c);c._m=avgMes(c);});
+
+// ── STATE ──
+let pF='all', expId=null;
+
+function setP(v){
+  pF=v;
+  ['bAll','bAlta','bMedia','bNormal'].forEach(id=>document.getElementById(id).classList.remove('on'));
+  const m={all:'bAll',alta:'bAlta',media:'bMedia',normal:'bNormal'};
+  document.getElementById(m[v]).classList.add('on');
+  render();
+}
+
+function filtered(){
+  const q=document.getElementById('q').value.toLowerCase();
+  const yf=document.getElementById('yf').value;
+  const sf=document.getElementById('sf').value;
+  let list=D.filter(c=>{
+    if(q&&!c.nombre.toLowerCase().includes(q))return false;
+    if(pF!=='all'&&c._p!==pF)return false;
+    if(yf==='3'&&c.años.length!==3)return false;
+    if(yf==='2'&&c.años.length!==2)return false;
+    if(yf==='1'&&c.años.length!==1)return false;
+    return true;
+  });
+  list.sort((a,b)=>{
+    if(sf==='priority'){const d=ppeso(a._p)-ppeso(b._p);return d||a._m-b._m;}
+    if(sf==='bolsas')return b._b-a._b;
+    if(sf==='nombre')return a.nombre.localeCompare(b.nombre);
+    const y={mes23:2023,mes24:2024,mes25:2025}[sf];
+    const da=ydata(a,y),db=ydata(b,y);
+    if(!da&&!db)return 0;if(!da)return 1;if(!db)return -1;
+    return da.primer_mes*32+da.primer_dia-(db.primer_mes*32+db.primer_dia);
+  });
+  return list;
+}
+
+// ── ACTIVITY BAR ──
+const MNS=[4,5,6,7,8,9,10,11];
+const MNL=['A','M','J','J','A','S','O','N'];
+function actBar(c){
+  const dots={};
+  c.transacciones.forEach(t=>{
+    const d=new Date(t.fecha),m=d.getMonth()+1,y=d.getFullYear(),k=`${y}-${m}`;
+    if(!dots[k])dots[k]={year:y,month:m,bolsas:0};
+    dots[k].bolsas+=t.CANT||0;
+  });
+  let h='<div class="mtl">';
+  MNS.forEach((m,i)=>{
+    const ks=Object.keys(dots).filter(k=>+k.split('-')[1]===m);
+    if(ks.length>0){
+      const yrs=ks.map(k=>dots[k].year),bs=ks.reduce((s,k)=>s+dots[k].bolsas,0);
+      const col=yrs.length===1?CLRS[yrs[0]]:'#e67e22';
+      const tip=ks.map(k=>`${dots[k].year}: ${Math.round(dots[k].bolsas)} bls`).join(' | ');
+      const w=Math.max(6,Math.min(32,bs/25));
+      h+=`<div class="mtl-seg" style="background:${col};width:${w}px" data-tip="${MNL[i]}: ${tip}"></div>`;
+    }else{
+      h+=`<div class="mtl-lbl">${MNL[i]}</div>`;
+    }
+  });
+  return h+'</div>';
+}
+
+// ── CHIPS ──
+function chips(c){
+  let h='<div class="chips">';
+  if(ydata(c,2023))h+='<span class="chip y23">\'23</span>';
+  if(ydata(c,2024))h+='<span class="chip y24">\'24</span>';
+  if(ydata(c,2025))h+='<span class="chip y25">\'25</span>';
+  return h+'</div>';
+}
+
+// ── PRIO BADGE ──
+function pb(p){const l={alta:'Alta',media:'Media',normal:'Normal'};return `<span class="prio ${p}"><span class="dot"></span>${l[p]}</span>`;}
+
+// ── EXPAND ROW ──
+function expRow(c){
+  const agg={};
+  c.transacciones.forEach(t=>{
+    const k=`${t.año}|${t.fecha}`;
+    if(!agg[k])agg[k]={año:t.año,fecha:t.fecha,b:0,h:[]};
+    agg[k].b+=t.CANT||0;
+    const hib=(t.Hibrido||'').trim();
+    if(hib&&!agg[k].h.includes(hib))agg[k].h.push(hib);
+  });
+  const rows=Object.values(agg).sort((a,b)=>a.año-b.año||(a.fecha<b.fecha?-1:1));
+  const byY={};rows.forEach(r=>{if(!byY[r.año])byY[r.año]=[];byY[r.año].push(r);});
+  let h=`<div class="exp-inner"><h4>📋 ${c.nombre}</h4>`;
+  [2023,2024,2025].forEach(y=>{
+    if(!byY[y])return;
+    h+=`<div class="txn-grp"><div class="txn-yr" style="color:${CLRS[y]}">Campaña ${y}–${y+1}</div>`;
+    h+=`<table class="txn-tbl"><thead><tr><th>Fecha</th><th>Bolsas</th><th>Híbridos</th></tr></thead><tbody>`;
+    byY[y].forEach(r=>{
+      const hibStr=r.h.slice(0,3).join(', ')+(r.h.length>3?'…':'');
+      h+=`<tr><td>${r.fecha}</td><td><strong>${Math.round(r.b)}</strong></td><td style="color:#777;font-size:.75rem">${hibStr}</td></tr>`;
+    });
+    h+='</tbody></table></div>';
+  });
+  return h+'</div>';
+}
+
+// ── RENDER TABLE ──
+function render(){
+  const list=filtered();
+  const tb=document.getElementById('tbody');
+  document.getElementById('cnt').textContent=`${list.length} clientes`;
+  document.getElementById('nores').style.display=list.length?'none':'block';
+  if(!list.length){tb.innerHTML='';renderTL(list);renderStats(list);return;}
+  const rows=[];
+  list.forEach(c=>{
+    const isE=expId===c.id;
+    const a23=ydata(c,2023),a24=ydata(c,2024),a25=ydata(c,2025);
+    rows.push(`<tr class="${isE?'exp':''}" onclick="toggle('${c.id}')">
+      <td><button class="ebtn">${isE?'▲':'▼'}</button></td>
+      <td><div class="cname" title="${c.nombre}">${c.nombre}</div></td>
+      <td>${pb(c._p)}</td>
+      <td>${chips(c)}</td>
+      <td>${actBar(c)}</td>
+      <td><strong>${Math.round(c._b)}</strong></td>
+      <td>${a23?fdate(a23.primera_compra):'—'}</td>
+      <td>${a24?fdate(a24.primera_compra):'—'}</td>
+      <td>${a25?fdate(a25.primera_compra):'—'}</td>
+    </tr>`);
+    if(isE)rows.push(`<tr class="exp-row"><td colspan="9">${expRow(c)}</td></tr>`);
+  });
+  tb.innerHTML=rows.join('');
+  renderTL(list);
+  renderStats(list);
+}
+
+function toggle(id){expId=expId===id?null:id;render();}
+
+// ── STATS ──
+function renderStats(list){
+  const alta=list.filter(c=>c._p==='alta').length;
+  const media=list.filter(c=>c._p==='media').length;
+  const tres=list.filter(c=>c.años.length===3).length;
+  const bols=Math.round(list.reduce((s,c)=>s+c._b,0));
+  document.getElementById('statsBox').innerHTML=`
+    <div class="stat"><div class="n" style="color:var(--rojo)">${alta}</div><div class="l">🔴 Prioridad alta</div></div>
+    <div class="stat"><div class="n" style="color:var(--naranja)">${media}</div><div class="l">🟠 Prioridad media</div></div>
+    <div class="stat"><div class="n">${tres}</div><div class="l">✅ Activos 3 campañas</div></div>
+    <div class="stat"><div class="n">${bols.toLocaleString('es-AR')}</div><div class="l">🌽 Bolsas históricas</div></div>
+  `;
+}
+
+// ── TIMELINE ──
+function renderTL(list){
+  const top=[...list].sort((a,b)=>b._b-a._b).slice(0,35);
+  const g=document.getElementById('tlGrid');
+  function pct(m,d){const tot=(12-4)*30+30;return Math.max(0,Math.min(1,((m-4)*30+d)/tot))*100;}
+  const rows=top.map(c=>{
+    const nm=c.nombre.length>26?c.nombre.slice(0,24)+'…':c.nombre;
+    const po=c._p==='alta'?'🔴':c._p==='media'?'🟠':'';
+    let markers='';
+    c.años.forEach(a=>{
+      if(a.primer_mes<4||a.primer_mes>12)return;
+      const p=pct(a.primer_mes,a.primer_dia);
+      const sz=Math.max(8,Math.min(14,6+a.total_bolsas/120));
+      const tip=`${a.año}: ${fdate(a.primera_compra)} (${Math.round(a.total_bolsas)} bls)`;
+      markers+=`<div class="tl-marker" style="left:${p}%;background:${CLRS[a.año]};width:${sz}px;height:${sz}px;top:${(10-sz)/2}px" data-tip="${tip}"></div>`;
+    });
+    return `<div class="tl-row">
+      <div class="tl-name" title="${c.nombre}">${po} ${nm}</div>
+      <div class="tl-bar-c">${markers}</div>
+      <div class="tl-bolsas">${Math.round(c._b).toLocaleString('es-AR')}</div>
+    </div>`;
+  });
+  g.innerHTML=rows.join('');
+}
+
+// INIT
+render();
+</script>
+</body>
+</html>
