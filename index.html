@@ -228,10 +228,9 @@ td { padding:9px 13px; vertical-align:middle; }
           <th>Prioridad</th>
           <th>Campañas</th>
           <th>Actividad mensual (Abr→Nov)</th>
-          <th>Bolsas</th>
-          <th>1ª compra '23</th>
-          <th>1ª compra '24</th>
-          <th>1ª compra '25</th>
+          <th onclick="setSort('mes23')" style="cursor:pointer" title="Ordenar">Fecha · Bolsas '23 ↕</th>
+          <th onclick="setSort('mes24')" style="cursor:pointer" title="Ordenar">Fecha · Bolsas '24 ↕</th>
+          <th onclick="setSort('mes25')" style="cursor:pointer" title="Ordenar">Fecha · Bolsas '25 ↕</th>
           <th>Adengo</th>
         </tr>
       </thead>
@@ -270,9 +269,12 @@ function totalB(c){return c.años.reduce((s,a)=>s+a.total_bolsas,0);}
 function avgMes(c){const m=c.años.map(a=>a.primer_mes);return m.reduce((s,v)=>s+v,0)/m.length;}
 function prio(c){
   const n=c.años.length, m=avgMes(c), b=totalB(c);
-  if(n>=2 && m<=5 && b>=100) return 'alta';
-  if(n>=2 && m<=6) return 'alta';
-  if(n>=2 || b>=200) return 'media';
+  // Priority based on average first-buy month (earlier = higher)
+  if(m<=4) return 'alta';
+  if(m<=5 && n>=2) return 'alta';
+  if(m<=5) return 'media';
+  if(m<=6 && n>=2) return 'media';
+  if(m<=7 || n>=2) return 'media';
   return 'normal';
 }
 function ppeso(p){return p==='alta'?0:p==='media'?1:2;}
@@ -414,10 +416,9 @@ function render(){
       <td>${pb(c._p)}</td>
       <td>${chips(c)}</td>
       <td>${actBar(c)}</td>
-      <td><strong>${Math.round(c._b)}</strong></td>
-      <td>${a23?fdate(a23.primera_compra):'—'}</td>
-      <td>${a24?fdate(a24.primera_compra):'—'}</td>
-      <td>${a25?fdate(a25.primera_compra):'—'}</td>
+      <td>${a23?`<span style='font-weight:500'>${fdate(a23.primera_compra)}</span> <span style='font-size:.82rem'>· ${Math.round(a23.total_bolsas)} bls</span>`:'—'}</td>
+      <td>${a24?`<span style='font-weight:500'>${fdate(a24.primera_compra)}</span> <span style='font-size:.82rem'>· ${Math.round(a24.total_bolsas)} bls</span>`:'—'}</td>
+      <td>${a25?`<span style='font-weight:500'>${fdate(a25.primera_compra)}</span> <span style='font-size:.82rem'>· ${Math.round(a25.total_bolsas)} bls</span>`:'—'}</td>
       <td>${adengoCell(c)}</td>
     </tr>`);
     if(isE)rows.push(`<tr class="exp-row"><td colspan="9">${expRow(c)}</td></tr>`);
@@ -428,6 +429,7 @@ function render(){
 }
 
 function toggle(id){expId=expId===id?null:id;render();}
+function setSort(v){document.getElementById('sf').value=v;render();}
 
 // ── STATS ──
 function renderStats(list){
