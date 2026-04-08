@@ -88,6 +88,8 @@ header .sub { font-size:0.78rem; color:rgba(255,255,255,0.7); margin-top:2px; }
   background:var(--white); border-radius:14px;
   box-shadow:0 2px 10px rgba(0,0,0,0.07); overflow:hidden; margin-bottom:20px;
 }
+.tbl-wrap table { min-width:900px; }
+.tbl-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
 .tbl-head {
   padding:14px 18px 10px; display:flex; justify-content:space-between; align-items:center;
   border-bottom:1px solid var(--gris-claro);
@@ -200,6 +202,43 @@ td { padding:9px 13px; vertical-align:middle; }
 .cross-check { text-align:center; font-size:.85rem; }
 .cross-empty { text-align:center; color:#e0ddd8; font-size:.75rem; }
 
+
+/* ── MONTHLY TABLES ── */
+.monthly-table { background:#fff; border-radius:14px; box-shadow:0 2px 10px rgba(0,0,0,.07); margin-bottom:24px; overflow:hidden; }
+.monthly-hdr { padding:16px 20px; color:#fff; }
+.monthly-hdr h2 { font-family:'Syne',sans-serif; font-size:.95rem; font-weight:700; }
+.m-tbl { width:100%; border-collapse:collapse; font-size:.8rem; }
+.m-tbl thead th { background:#f6f2ea; padding:8px 12px; font-family:'Syne',sans-serif; font-size:.66rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#7a5230; white-space:nowrap; }
+.m-fam-th { text-align:left; min-width:110px; }
+.m-prod-th { text-align:left; min-width:160px; }
+.m-num-th { text-align:right; min-width:80px; }
+.m-total-th { background:#eee8dc !important; }
+.m-fam-cell { font-weight:700; font-size:.78rem; color:#333; vertical-align:middle; padding:8px 12px; background:#faf7f0; border-bottom:1px solid #e8e4dc; }
+.m-prod-cell { padding:7px 12px; color:#555; border-bottom:1px solid #f0ede6; }
+.m-prod-row:hover td { background:#fdf9f2; }
+.m-num { text-align:right; padding:7px 12px; border-bottom:1px solid #f0ede6; font-variant-numeric:tabular-nums; }
+.m-total { background:#faf7f0; font-weight:600; }
+.m-sub-row td { background:#f0ede6; font-weight:600; font-size:.77rem; padding:5px 12px; border-bottom:2px solid #e0d8cc; }
+.m-sub-label { padding-left:16px; }
+.m-sub { text-align:right; }
+.m-grand-row td { background:var(--verde); color:#fff; font-family:'Syne',sans-serif; font-weight:700; font-size:.8rem; padding:10px 12px; }
+.m-grand-row .m-num { text-align:right; }
+
+
+@media(max-width:768px){
+  .wrap { padding:12px 8px; }
+  .stats { grid-template-columns:repeat(2,1fr); gap:8px; }
+  .filters { gap:8px; padding:10px 12px; }
+  .filters input[type=text] { min-width:140px; }
+  header { padding:14px 16px; }
+  header h1 { font-size:1.1rem; }
+  .tbl-head { padding:10px 12px; }
+  .cross-tbl-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .cross-tbl { min-width:600px; }
+  .monthly-table { border-radius:10px; }
+  .m-tbl { min-width:500px; }
+}
+
 </style>
 </head>
 <body>
@@ -271,6 +310,19 @@ td { padding:9px 13px; vertical-align:middle; }
   </div>
 
   
+
+<div class="monthly-table">
+<div class="monthly-hdr" style="background:#1e5c12">
+  <h2>📋 Facturación Campaña 2025-2026 — Terra Salto</h2>
+  <div style="font-size:.75rem;color:rgba(255,255,255,.7);margin-top:2px">Productos CP · unidades/kg/lts · campaña 2025</div>
+</div>
+<div style="overflow-x:auto"><table class="m-tbl">
+<thead><tr>
+  <th class="m-fam-th">Familia</th>
+  <th class="m-prod-th">Producto</th>
+  <th class="m-num-th">Abril</th><th class="m-num-th">Mayo</th><th class="m-num-th">Junio</th><th class="m-num-th">Agosto</th><th class="m-num-th">Septiembre</th>
+  <th class="m-num-th m-total-th">Total</th>
+</tr></thead><tbody><tr class="m-prod-row"><td class="m-fam-cell" rowspan="3" style="border-left:3px solid #6a4c93">Fungicidas</td><td class="m-prod-cell">Cripton</td><td class="m-num"></td><td class="m-num"></td><td class="m-num">2.000</td><td class="m-num"></td><td class="m-num">815</td><td class="m-num m-total">2.815</td></tr><tr class="m-prod-row"><td class="m-prod-cell">Cripton Xpro</td><td class="m-num"></td><td class="m-num"></td><td class="m-num">70</td><td class="m-num"></td><td class="m-num">1.620</td><td class="m-num m-total">1.690</td></tr><tr class="m-prod-row"><td class="m-prod-cell">Iblon</td><td class="m-num"></td><td class="m-num"></td><td class="m-num"></td><td class="m-num"></td><td class="m-num">70</td><td class="m-num m-total">70</td></tr><tr class="m-sub-row"><td class="m-sub-label" style="color:#6a4c93">↳ Subtotal Fungicidas</td><td class="m-num m-sub"></td><td class="m-num m-sub"></td><td class="m-num m-sub">2.070</td><td class="m-num m-sub"></td><td class="m-num m-sub">2.505</td><td class="m-num m-sub m-total">4.575</td></tr><tr class="m-prod-row"><td class="m-fam-cell" rowspan="5" style="border-left:3px solid #2d6a4f">Herbicidas</td><td class="m-prod-cell">Adengo</td><td class="m-num">830</td><td class="m-num">1.210</td><td class="m-num">1.030</td><td class="m-num"></td><td class="m-num"></td><td class="m-num m-total">3.070</td></tr><tr class="m-prod-row"><td class="m-prod-cell">Hussar OD</td><td class="m-num"></td><td class="m-num"></td><td class="m-num">6</td><td class="m-num"></td><td class="m-num">9</td><td class="m-num m-total">15</td></tr><tr class="m-prod-row"><td class="m-prod-cell">Latium Super</td><td class="m-num">200</td><td class="m-num">2.500</td><td class="m-num"></td><td class="m-num"></td><td class="m-num"></td><td class="m-num m-total">2.700</td></tr><tr class="m-prod-row"><td class="m-prod-cell">Percutor 1800g</td><td class="m-num"></td><td class="m-num">18</td><td class="m-num">34.2</td><td class="m-num">46.8</td><td class="m-num">10.8</td><td class="m-num m-total">109.8</td></tr><tr class="m-prod-row"><td class="m-prod-cell">Percutor 900g</td><td class="m-num">45</td><td class="m-num">19.8</td><td class="m-num"></td><td class="m-num"></td><td class="m-num"></td><td class="m-num m-total">64.8</td></tr><tr class="m-sub-row"><td class="m-sub-label" style="color:#2d6a4f">↳ Subtotal Herbicidas</td><td class="m-num m-sub">1.075</td><td class="m-num m-sub">3.747.8</td><td class="m-num m-sub">1.070.2</td><td class="m-num m-sub">46.8</td><td class="m-num m-sub">19.8</td><td class="m-num m-sub m-total">5.959.6</td></tr><tr class="m-prod-row"><td class="m-fam-cell" rowspan="2" style="border-left:3px solid #e63946">Insecticidas</td><td class="m-prod-cell">Belt</td><td class="m-num"></td><td class="m-num"></td><td class="m-num">180</td><td class="m-num"></td><td class="m-num"></td><td class="m-num m-total">180</td></tr><tr class="m-prod-row"><td class="m-prod-cell">Decis Flow</td><td class="m-num"></td><td class="m-num">259</td><td class="m-num"></td><td class="m-num"></td><td class="m-num">160</td><td class="m-num m-total">419</td></tr><tr class="m-sub-row"><td class="m-sub-label" style="color:#e63946">↳ Subtotal Insecticidas</td><td class="m-num m-sub"></td><td class="m-num m-sub">259</td><td class="m-num m-sub">180</td><td class="m-num m-sub"></td><td class="m-num m-sub">160</td><td class="m-num m-sub m-total">599</td></tr><tr class="m-prod-row"><td class="m-fam-cell" rowspan="2" style="border-left:3px solid #f77f00">Seedgrowth</td><td class="m-prod-cell">Acceleron Cereales</td><td class="m-num"></td><td class="m-num">21</td><td class="m-num">17</td><td class="m-num">14</td><td class="m-num"></td><td class="m-num m-total">52</td></tr><tr class="m-prod-row"><td class="m-prod-cell">Scenic</td><td class="m-num"></td><td class="m-num"></td><td class="m-num">30</td><td class="m-num"></td><td class="m-num"></td><td class="m-num m-total">30</td></tr><tr class="m-sub-row"><td class="m-sub-label" style="color:#f77f00">↳ Subtotal Seedgrowth</td><td class="m-num m-sub"></td><td class="m-num m-sub">21</td><td class="m-num m-sub">47</td><td class="m-num m-sub">14</td><td class="m-num m-sub"></td><td class="m-num m-sub m-total">82</td></tr><tr class="m-grand-row"><td colspan="2">TOTAL GENERAL</td><td class="m-num">1.075</td><td class="m-num">4.027.8</td><td class="m-num">3.367.2</td><td class="m-num">60.8</td><td class="m-num">2.684.8</td><td class="m-num">11.215.6</td></tr></tbody></table></div></div>
 
 <div class="cross-section">
   <div class="cross-head">
